@@ -185,17 +185,17 @@ Flattened: `SEC` `USEC` `TYPE` `CODE` `VALUE`
 
 How many bytes is a `long`?  Well, it's platform-dependent.  On a 32-bit
 platform, you get 32 bits (4 bytes).  On a 64-bit platform you get 64 bits
-(8 bytes).
-
-This means that the event is 16 bytes on a 32-bit machine and 24 bytes on a
-64-bit machine.  Software will need to accommodate.
+(8 bytes).  This means that the event is 16 bytes on a 32-bit machine and
+24 bytes on a 64-bit machine.  Software will need to accommodate.
 
 ## Ruby tools
 
-We can use `RbConfig` and `Array#pack` to help us read these binary structs:
+We can use `RbConfig` and `Array#pack`/`String#unpack` to help us read these
+binary structs:
 
 ```
 FIELD      C        RbConfig  Pack
+---        ---      ---       ---
 tv_sec     long     long      l!
 tv_usec    long     long      l!
 type       __u16    uint16_t  S
