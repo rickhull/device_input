@@ -79,19 +79,61 @@ $ sudo devsniff /dev/input/event0
 
 When the `f` key is pressed:
 ```
-Misc:ScanCode:33
-Key:F:1
-Sync:Sync:0
+EV_MSC:ScanCode:33
+EV_KEY:F:1
+EV_SYN:SYN_REPORT:0
 ```
 
-And released:
+And released immediately (1=pressed, 0=released):
 ```
-Misc:ScanCode:33
-Key:F:1
-Sync:Sync:0
-Misc:ScanCode:33
-Key:F:0
-Sync:Sync:0
+EV_MSC:ScanCode:33
+EV_KEY:F:1
+EV_SYN:SYN_REPORT:0
+EV_MSC:ScanCode:33
+EV_KEY:F:0
+EV_SYN:SYN_REPORT:0
+```
+
+How about pretty mode?
+```
+$ sudo devsniff /dev/input/event0 pretty
+
+# f
+
+2017-01-24 05:29:43.923 Misc:ScanCode:33
+2017-01-24 05:29:43.923 Key:F:1
+2017-01-24 05:29:43.923 Sync:Report:0
+2017-01-24 05:29:44.012 Misc:ScanCode:33
+2017-01-24 05:29:44.012 Key:F:0
+2017-01-24 05:29:44.012 Sync:Report:0
+```
+
+We can pull off the labels and go raw:
+```
+$ sudo devsniff /dev/input/event0 pretty
+
+# f
+
+4:4:33
+1:33:1
+0:0:0
+4:4:33
+1:33:0
+0:0:0
+```
+
+Fulfill your hacker-matrix fantasies:
+```
+$ sudo devsniff /dev/input/event0 pretty
+
+# f
+
+00000000588757bd 00000000000046ca 0004 0004 00000021
+00000000588757bd 00000000000046ca 0001 0021 00000001
+00000000588757bd 00000000000046ca 0000 0000 00000000
+00000000588757bd 000000000001a298 0004 0004 00000021
+00000000588757bd 000000000001a298 0001 0021 00000000
+00000000588757bd 000000000001a298 0000 0000 00000000
 ```
 
 ## Library
