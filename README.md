@@ -110,7 +110,7 @@ $ sudo devsniff /dev/input/event0 pretty
 
 We can pull off the labels and go raw:
 ```
-$ sudo devsniff /dev/input/event0 pretty
+$ sudo devsniff /dev/input/event0 raw
 
 # f
 
@@ -124,7 +124,7 @@ $ sudo devsniff /dev/input/event0 pretty
 
 Fulfill your hacker-matrix fantasies:
 ```
-$ sudo devsniff /dev/input/event0 pretty
+$ sudo devsniff /dev/input/event0 bytes
 
 # f
 
