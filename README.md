@@ -50,6 +50,10 @@ executable code to assist in examining kernel input events.
 
 # Installation
 
+Requirements: Ruby >= 2.0
+
+Dependencies: none
+
 Install the gem:
 ```
 $ gem install device_input # sudo as necessary
@@ -78,6 +82,9 @@ Sync:Sync:0
 And released:
 ```
 Misc:ScanCode:33
+Key:F:1
+Sync:Sync:0
+Misc:ScanCode:33
 Key:F:0
 Sync:Sync:0
 ```
@@ -87,18 +94,25 @@ Sync:Sync:0
 ```
 require 'device_input'
 
+# this loops forever and blocks waiting for input
 DeviceInput.read_from('/dev/input/event0') do |event|
   puts event
+  # break if event.time > start + 30
 end
 ```
 
 An event has:
 
-* `#data` - a Struct of ints (class name Data)
-* `#time` - a Time, accurate to usecs
-* `#type` - a String, possibly UNK-X where X is the integer from `#data`
-* `#code` - a String, possibly UNK-X-Y where X and Y are from `#data`
-* `#value` - a Fixnum (signed)
+* `#data`: Struct of ints (class name Data)
+* `#time`: Time, accurate to usecs
+* `#type`: String label, possibly `UNK-X` where X is the integer from `#data`
+* `#code`: String label, possibly `UNK-X-Y` where X and Y are from `#data`
+* `#value`: Fixnum (signed) from `#data`
+
+You will probably want to write your own read loop for your own project.
+[`DeviceInput.read_from`](lib/device_input.rb#L111) is very simple and can
+easily be rewritten outside of this project's namespace and adapted for your
+needs.
 
 # Research
 
