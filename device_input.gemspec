@@ -11,7 +11,7 @@ EOF
   s.files = %w(
 README.md
 lib/device_input.rb
-lib/device_input/events.rb
+lib/device_input/codes.rb
 bin/devsniff
 )
   s.executables = ['devsniff']
