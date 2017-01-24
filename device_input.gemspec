@@ -13,6 +13,7 @@ README.md
 lib/device_input.rb
 lib/device_input/labels.rb
 bin/devsniff
+VERSION
 )
   s.executables = ['devsniff']
   s.add_development_dependency "buildar", "~> 2"
