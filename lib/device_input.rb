@@ -32,12 +32,8 @@ module DeviceInput
 
     def self.code_str(type_code, code_code)
       require 'device_input/events'
-      e = DeviceInput::EVENTS[type_code]
-      if e and e[code_code]
-        e[code_code]
-      else
+      DeviceInput::EVENTS.dig(type_code, code_code) ||
         "UNK-#{type_code}-#{code_code}"
-      end
     end
 
     NULL_DATA = Data.new(0, 0, 0, 0, 0)
@@ -51,6 +47,10 @@ module DeviceInput
       @type = self.class.type_str(data.type)
       @code = self.class.code_str(data.type, data.code)
       @value = data.value
+    end
+
+    def to_s
+      [@type, @code, @value].join(':')
     end
 
     TYPES = {
@@ -67,5 +67,16 @@ module DeviceInput
       23 => 'ForceFeedbackStatus',
     }
 
+    BYTE_LENGTH = NULL_MSG.length
+  end
+
+  def self.read_from(filename)
+    File.open(filename, 'r') { |f|
+      loop {
+        bytes = f.read(Event::BYTE_LENGTH)
+        msg = Event.decode(bytes)
+        yield Event.new(msg)
+      }
+    }
   end
 end
