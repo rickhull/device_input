@@ -61,7 +61,7 @@ $ gem install device_input # sudo as necessary
 
 Or, if using [Bundler](http://bundler.io/), add to your `Gemfile`:
 ```
-gem 'device_input', '~> 0.0'
+gem 'device_input', '~> 0.1'
 ```
 
 # Usage
