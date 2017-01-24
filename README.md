@@ -1,6 +1,6 @@
 # Background
 
-We want to read events from e.g. /dev/input/event0
+We want to read events from e.g. `/dev/input/event0` in Ruby.
 
 ## Kernel docs
 
