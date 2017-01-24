@@ -3,6 +3,7 @@ module DeviceInput
 
   # type = Sync
   EVENTS[0] = {
+    0 => 'Sync',
   }
 
   # type = Key
