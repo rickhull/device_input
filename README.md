@@ -51,13 +51,11 @@ executable code to assist in examining kernel input events.
 # Installation
 
 Install the gem:
-
 ```
 $ gem install device_input # sudo as necessary
 ```
 
 Or, if using [Bundler](http://bundler.io/), add to your `Gemfile`:
-
 ```
 gem 'device_input', '~> 0.0'
 ```
@@ -71,7 +69,6 @@ $ sudo devsniff /dev/input/event0
 ```
 
 When the `f` key is pressed:
-
 ```
 Misc:ScanCode:33
 Key:F:1
@@ -116,7 +113,6 @@ about these structs towards the end of this document.
 ## Kernel structs
 
 from https://www.kernel.org/doc/Documentation/input/input.txt
-
 ```
 struct input_event {
        struct timeval time;
@@ -128,7 +124,6 @@ struct input_event {
 
 from
 https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/linux/input.h#n25
-
 ```
 struct input_event {
        struct timeval time;
@@ -139,7 +134,6 @@ struct input_event {
 ```
 
 What's a [`timeval`](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/linux/time.h#n15)?
-
 ```
 struct timeval {
        __kernel_time_t          tv_sec;      /* seconds */
@@ -148,7 +142,6 @@ struct timeval {
 ```
 
 What's a [`__kernel_time_t`](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/posix_types.h#n88)?
-
 ```
 typedef long            __kernel_long_t;
 # ...
@@ -160,7 +153,6 @@ typedef __kernel_long_t __kernel_time_t;
 What's a [`__u16`](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/int-l64.h#n23)?
 We're pretty sure it's an unsigned 16 bit integer.  Likewise `__s32` should
 be a signed 32-bit integer:
-
 ```
 typedef unsigned short __u16;
 
@@ -192,7 +184,6 @@ platform, you get 32 bits (4 bytes).  On a 64-bit platform you get 64 bits
 
 We can use `RbConfig` and `Array#pack`/`String#unpack` to help us read these
 binary structs:
-
 ```
 FIELD      C        RbConfig  Pack
 ---        ---      ---       ---
