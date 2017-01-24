@@ -205,3 +205,8 @@ type       __u16    uint16_t  S
 code       __u16    uint16_t  S
 value      __s32    int32_t   l
 ```
+
+# Acknowledgments
+
+* Inspired by https://github.com/prullmann/libdevinput (don't use it)
+* https://github.com/al2o3cr for feedback in #ruby on Freenode
