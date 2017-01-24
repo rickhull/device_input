@@ -48,7 +48,7 @@ module DeviceInput
 
     def self.code_str(type_code, code_code)
       require 'device_input/events'
-      DeviceInput::EVENTS.dig(type_code, code_code) ||
+      DeviceInput::CODES.dig(type_code, code_code) ||
         "UNK-#{type_code}-#{code_code}"
     end
 

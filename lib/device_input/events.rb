@@ -1,13 +1,13 @@
 module DeviceInput
-  EVENTS = {}
+  CODES = {}
 
   # type = Sync
-  EVENTS[0] = {
+  CODES[0] = {
     0 => 'Sync',
   }
 
   # type = Key
-  EVENTS[1] = {
+  CODES[1] = {
     0 => 'Reserved',
     1 => 'Esc',
     2 => '1',
@@ -358,7 +358,7 @@ module DeviceInput
   }
 
   # type = Relative
-  EVENTS[2] = {
+  CODES[2] = {
     0 => 'X',
     1 => 'Y',
     2 => 'Z',
@@ -369,7 +369,7 @@ module DeviceInput
   }
 
   # type = Absolute
-  EVENTS[3] = {
+  CODES[3] = {
     0 => 'X',
     1 => 'Y',
     2 => 'Z',
@@ -399,7 +399,7 @@ module DeviceInput
   }
 
   # type = Misc
-  EVENTS[4] = {
+  CODES[4] = {
     0 => 'Serial',
     1 => 'Pulseled',
     2 => 'Gesture',
@@ -408,7 +408,7 @@ module DeviceInput
   }
 
   # type = LED
-  EVENTS[17] = {
+  CODES[17] = {
     0 => 'NumLock',
     1 => 'CapsLock',
     2 => 'ScrollLock',
@@ -421,14 +421,14 @@ module DeviceInput
   }
 
   # type = Sound
-  EVENTS[18] = {
+  CODES[18] = {
     0 => 'Click',
     1 => 'Bell',
     2 => 'Tone',
   }
 
   # type = Repeat
-  EVENTS[20] = {
+  CODES[20] = {
     0 => 'Delay',
     1 => 'Period',
   }
