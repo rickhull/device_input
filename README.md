@@ -60,12 +60,12 @@ executable code to assist in examining kernel input events.
 * none
 
 Install the gem:
-```
+```shell
 $ gem install device_input # sudo as necessary
 ```
 
 Or, if using [Bundler](http://bundler.io/), add to your `Gemfile`:
-```
+```ruby
 gem 'device_input', '~> 0.1'
 ```
 
@@ -73,7 +73,7 @@ gem 'device_input', '~> 0.1'
 
 ## Executable
 
-```
+```shell
 $ sudo devsniff /dev/input/event0
 ```
 
@@ -95,7 +95,7 @@ EV_SYN:SYN_REPORT:0
 ```
 
 How about pretty mode?
-```
+```shell
 $ sudo devsniff /dev/input/event0 pretty
 
 # f
@@ -109,7 +109,7 @@ $ sudo devsniff /dev/input/event0 pretty
 ```
 
 We can pull off the labels and go raw:
-```
+```shell
 $ sudo devsniff /dev/input/event0 raw
 
 # f
@@ -123,7 +123,7 @@ $ sudo devsniff /dev/input/event0 raw
 ```
 
 Fulfill your hacker-matrix fantasies:
-```
+```shell
 $ sudo devsniff /dev/input/event0 bytes
 
 # f
@@ -138,7 +138,7 @@ $ sudo devsniff /dev/input/event0 bytes
 
 ## Library
 
-```
+```ruby
 require 'device_input'
 
 # this loops forever and blocks waiting for input
