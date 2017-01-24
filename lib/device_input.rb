@@ -108,6 +108,7 @@ module DeviceInput
     end
   end
 
+  # never gonna give you up
   def self.read_from(filename)
     File.open(filename, 'r') { |f|
       loop {
