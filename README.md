@@ -1,5 +1,7 @@
 # Device Input
 
+*for the Linux kernel*
+
 We want to read events from e.g. `/dev/input/event0` in Ruby.  For example,
 if you want to see what's happening "on the wire" when you press a special
 function key on a laptop.  While this code can be used for the purpose of
