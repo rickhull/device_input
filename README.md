@@ -34,7 +34,7 @@ struct input_event {
 };
 ```
 
-What's a timeval?
+What's a `timeval`?
 https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/linux/time.h#n15
 
 ```
@@ -44,7 +44,7 @@ struct timeval {
 };
 ```
 
-What's a __kernel_time_t?
+What's a `__kernel_time_t`?
 https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/posix_types.h#n88
 
 ```
@@ -55,8 +55,8 @@ typedef __kernel_long_t         __kernel_suseconds_t;
 typedef __kernel_long_t __kernel_time_t;
 ```
 
-What's a __u16?  We're pretty sure it's an unsigned 16 bit integer.
-Likewise __s32 should be a signed 32-bit integer:
+What's a `__u16`?  We're pretty sure it's an unsigned 16 bit integer.
+Likewise `__s32` should be a signed 32-bit integer:
 
 https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/int-l64.h#n23
 
@@ -80,9 +80,9 @@ Let's review:
 * code (__u16)
 * value (__s32)
 
-Flattened: SEC,USEC,TYPE,CODE,VALUE
+Flattened: `SEC` `USEC` `TYPE` `CODE` `VALUE`
 
-How many bytes is a long?  Well, it's platform-dependent.  On a 32-bit
+How many bytes is a `long`?  Well, it's platform-dependent.  On a 32-bit
 platform, you get 32 bits (4 bytes).  On a 64-bit platform you get 64 bits
 (8 bytes).
 
