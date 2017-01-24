@@ -124,7 +124,7 @@ $ sudo devsniff /dev/input/event0 raw
 
 Fulfill your hacker-matrix fantasies:
 ```shell
-$ sudo devsniff /dev/input/event0 bytes
+$ sudo devsniff /dev/input/event0 hex
 
 # f
 

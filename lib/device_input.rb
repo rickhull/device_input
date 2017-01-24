@@ -85,7 +85,7 @@ module DeviceInput
     end
 
     # display fields in hex
-    def bytes
+    def hex
       require 'rbconfig/sizeof'
       DEFINITION.inject('') { |memo, (field, type)|
         int = @data.send(field)

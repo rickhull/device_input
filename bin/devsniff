@@ -13,7 +13,9 @@ end
 case mode
 when 'normal'
   mode = 'to_s'
-when 'pretty', 'raw', 'bytes'
+when 'bytes'     # legacy
+  mode = 'hex'
+when 'pretty', 'raw', 'hex'
   # ok
 else
   raise "unsupported mode: #{mode}"
