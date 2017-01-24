@@ -260,5 +260,5 @@ value      __s32    int32_t   l
 
 * Inspired by https://github.com/prullmann/libdevinput (don't use it)
   - also the source of an early version of the
-    [event code labels](lib/device_input/codes.rb)
+    [event code labels](lib/device_input/labels.rb)
 * Thanks to al2o3-cr from #ruby on Freenode for feedback
