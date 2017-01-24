@@ -138,8 +138,7 @@ struct input_event {
 };
 ```
 
-What's a `timeval`?
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/linux/time.h#n15
+What's a [`timeval`](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/linux/time.h#n15)?
 
 ```
 struct timeval {
