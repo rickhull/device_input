@@ -1,3 +1,5 @@
+require 'device_input/codes'
+
 module DeviceInput
   class Event
     DEFINITION = {
@@ -17,22 +19,6 @@ module DeviceInput
     # this defines a class, i.e. class Data ...
     Data = Struct.new(*DEFINITION.keys)
 
-    # these are just labels, not used internally
-    TYPES = {
-      0x00 => ['EV_SYN', 'Sync'],
-      0x01 => ['EV_KEY', 'Key'],
-      0x02 => ['EV_REL', 'Relative'],
-      0x03 => ['EV_ABS', 'Absolute'],
-      0x04 => ['EV_MSC', 'Misc'],
-      0x05 => ['EV_SW',  'ToggleSwitch'],
-      0x17 => ['EV_LED', 'LED'],
-      0x18 => ['EV_SND', 'Sound'],
-      0x20 => ['EV_REP', 'Repeat'],
-      0x21 => ['EV_FF',  'ForceFeedback'],
-      0x22 => ['EV_PWR', 'Power'],
-      0x23 => ['EV_FF_STATUS', 'ForceFeedbackStatus'],
-    }
-
     # convert Event::Data to a string
     def self.encode(data)
       data.values.pack(PACK)
@@ -50,8 +36,7 @@ module DeviceInput
 
     # return an array from [raw ... pretty]
     def self.code_labels(type_code, code_code)
-      require 'device_input/codes'
-      labels = DeviceInput::CODES.dig(type_code, code_code)
+      labels = CODES.dig(type_code, code_code)
       if labels
         # not all labels have been converted to arrays yet
         labels.kind_of?(Enumerable) ? labels : [labels]
