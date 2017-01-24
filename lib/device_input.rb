@@ -42,7 +42,7 @@ module DeviceInput
       labels = CODES.dig(type_val, code_val)
       if labels
         # not all labels have been converted to arrays yet
-        labels.kind_of?(Enumerable) ? labels : [labels]
+        labels.kind_of?(String) ? [labels] : labels
       else
         ["UNK-#{type_val}-#{code_val}"]
       end
