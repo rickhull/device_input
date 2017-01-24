@@ -182,8 +182,9 @@ platform, you get 32 bits (4 bytes).  On a 64-bit platform you get 64 bits
 
 ## Ruby tools
 
-We can use `RbConfig` and `Array#pack`/`String#unpack` to help us read these
-binary structs:
+We can use
+[`RbConfig::SIZEOF`](http://idiosyncratic-ruby.com/42-ruby-config.html#rbconfigsizeof)
+and `Array#pack`/`String#unpack` to help us read these binary structs:
 ```
 FIELD      C        RbConfig  Pack
 ---        ---      ---       ---
