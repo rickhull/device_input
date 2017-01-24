@@ -93,8 +93,8 @@ We can use `RbConfig` and `Array#pack` to help us read these binary structs:
 
 ```
 FIELD      C        RbConfig  Pack
-tv_usec    long     long      L_
-tv_usec    long     long      L_
+tv_usec    long     long      l!
+tv_usec    long     long      l!
 type       __u16    uint16_t  S
 code       __u16    uint16_t  S
 value      __s32    int32_t   l

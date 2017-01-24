@@ -8,7 +8,7 @@ module DeviceInput
       :value   => 'int32_t',
     }
     PACK_MAP = {
-      'long'     => 'L_',
+      'long'     => 'l!',
       'uint16_t' => 'S',
       'int32_t'  => 'l',
     }
