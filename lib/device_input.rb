@@ -3,14 +3,14 @@ require 'device_input/labels'
 module DeviceInput
   class Event
     DEFINITION = {
-      :tv_sec  => 'long',
-      :tv_usec => 'long',
+      :tv_sec  => 'long',     # 64 bits on 64-bit platforms
+      :tv_usec => 'long',     # 32 bits on 32-bit platforms
       :type    => 'uint16_t',
       :code    => 'uint16_t',
       :value   => 'int32_t',
     }
     PACK_MAP = {
-      'long'     => 'l!',
+      'long'     => 'l!',     # platform-dependent
       'uint16_t' => 'S',
       'int32_t'  => 'l',
     }
