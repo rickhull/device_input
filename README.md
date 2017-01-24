@@ -28,14 +28,14 @@ To determine the message size, we need to know the data structure.  For a
 long time, it was pretty simple: events are 16 bytes:
 
 * timestamp - 8 bytes
-* type - 1 byte
-* code - 1 byte
-* value - 2 bytes
+* type - 2 byte
+* code - 2 byte
+* value - 4 bytes
 
 However, this is only true for 32-bit platforms.  On 64-bit platforms, event
-timestamps became 16 bytes, increasing events from 16 to 24 bytes.  This is
-because a timestamp is defined as two `long`s, and `long`s are bigger on
-64-bit platforms.  It's easy to remember:
+timestamps became 16 bytes, increasing the size of events from 16 to 24 bytes.
+This is because a timestamp is defined (ultimately) as two `long`s, and
+`long`s are bigger on 64-bit platforms.  It's easy to remember:
 
 * 32-bit platform: 32-bit `long` (4 bytes)
 * 64-bit platform: 64-bit `long` (8 bytes)
