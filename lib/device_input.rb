@@ -30,18 +30,18 @@ module DeviceInput
     end
 
     # return an array from [raw ... pretty]
-    def self.type_labels(type_code)
-      TYPES[type_code] || ["UNK-#{type_code}"]
+    def self.type_labels(type_val)
+      TYPES[type_val] || ["UNK-#{type_val}"]
     end
 
     # return an array from [raw ... pretty]
-    def self.code_labels(type_code, code_code)
-      labels = CODES.dig(type_code, code_code)
+    def self.code_labels(type_val, code_val)
+      labels = CODES.dig(type_val, code_val)
       if labels
         # not all labels have been converted to arrays yet
         labels.kind_of?(Enumerable) ? labels : [labels]
       else
-        ["UNK-#{type_code}-#{code_code}"]
+        ["UNK-#{type_val}-#{code_val}"]
       end
     end
 
