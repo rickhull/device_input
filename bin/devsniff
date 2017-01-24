@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'device_input'
+
+device = ARGV.shift || '/dev/input/event0'
+
+DeviceInput.read_from(device) { |event|
+  puts event
+}
