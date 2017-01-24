@@ -16,7 +16,10 @@ module DeviceInput
     }
     PACK = DEFINITION.values.map { |v| PACK_MAP.fetch(v) }.join
 
-    # this defines a class, i.e. class Data ...
+    # This defines a class, i.e. class Data ... with keys/ivars matching
+    # DEFINITION. Data instances will hold a value for each of the keys.
+    # Sorry for the name.  It refers literally to the struct-of-integers
+    # representation we're creating here, every time we use the term `data`
     Data = Struct.new(*DEFINITION.keys)
 
     # convert Event::Data to a string
@@ -29,12 +32,12 @@ module DeviceInput
       Data.new *binstr.unpack(PACK)
     end
 
-    # return an array from [raw ... pretty]
+    # return an array of equivalent labels, prettier toward the end
     def self.type_labels(type_val)
       TYPES[type_val] || ["UNK-#{type_val}"]
     end
 
-    # return an array from [raw ... pretty]
+    # return an array of equivalent labels, prettier toward the end
     def self.code_labels(type_val, code_val)
       labels = CODES.dig(type_val, code_val)
       if labels
@@ -52,7 +55,7 @@ module DeviceInput
     attr_reader :data, :time, :type, :code
 
     def initialize(data)
-      @data = data
+      @data = data # sorry for the name.  it's a Data. data everywhere
       @time = Time.at(data.tv_sec, data.tv_usec)
       # take the raw label, closest to the metal
       @type = self.class.type_labels(data.type).first
