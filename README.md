@@ -1,13 +1,62 @@
-# Background
+# Device Input
 
-We want to read events from e.g. `/dev/input/event0` in Ruby.
+We want to read events from e.g. `/dev/input/event0` in Ruby.  For example,
+if you want to see what's happening "on the wire" when you press a special
+function key on a laptop.  While this code can be used for the purpose of
+malicious keystroke logging, it is not well suited for it and does not provide
+the root privileges in order to read /dev/input.  Once you've got the
+privilege to read /dev/input it's game over anyway.
+
+## Rationale
+
+/dev/input/eventX is just a character device.  Can't we read it with simple
+Unix tooling?  Yes and no.  First of all, a character device just means that
+it passes bytes (not necessarily characters or strings) from userspace into
+the kernel.  Secondarily, the messages (defined as C structs) are in fact
+binary and not strings or conventional characters.
+
+So we'd like to be able to read entire messages, one at a time, decode them,
+and display useful things like labels in the output.
+
+# Installation
+
+Install the gem:
+
+```
+$ gem install device_input # sudo as necessary
+```
+
+Or, if using [Bundler](http://bundler.io/), add to your `Gemfile`:
+
+```
+gem 'device_input', '~> 0.0'
+```
+
+# Usage
+
+```
+$ sudo devsniff /dev/input/event0`
+```
+
+When the `f` key is pressed:
+
+Output:
+```
+Misc:ScanCode:33
+Key:F:0
+Sync:Sync:0
+
+```
+
+# Research
 
 ## Kernel docs
 
 * https://www.kernel.org/doc/Documentation/input/input.txt
 * https://www.kernel.org/doc/Documentation/input/event-codes.txt
 
-These events are defined as C structs with a fixed size in bytes.
+These events are defined as C structs with a fixed size in bytes.  See more
+about these structs towards the end of this document.
 
 ## Kernel structs
 
@@ -69,7 +118,7 @@ typedef __signed__ int __s32;
 Why is the value signed?  It's meant to be able to communicate an "analog"
 range, say -127 to +127 as determined by the position of a joystick.
 
-Let's review:
+## Review
 
 `input_event`
 
@@ -88,6 +137,8 @@ platform, you get 32 bits (4 bytes).  On a 64-bit platform you get 64 bits
 
 This means that the event is 16 bytes on a 32-bit machine and 24 bytes on a
 64-bit machine.  Software will need to accommodate.
+
+## Ruby tools
 
 We can use `RbConfig` and `Array#pack` to help us read these binary structs:
 
