@@ -67,17 +67,22 @@ gem 'device_input', '~> 0.0'
 ## Executable
 
 ```
-$ sudo devsniff /dev/input/event0`
+$ sudo devsniff /dev/input/event0
 ```
 
 When the `f` key is pressed:
 
-Output:
+```
+Misc:ScanCode:33
+Key:F:1
+Sync:Sync:0
+```
+
+And released:
 ```
 Misc:ScanCode:33
 Key:F:0
 Sync:Sync:0
-
 ```
 
 ## Library
