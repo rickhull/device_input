@@ -147,8 +147,7 @@ struct timeval {
 };
 ```
 
-What's a `__kernel_time_t`?
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/posix_types.h#n88
+What's a [`__kernel_time_t`](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/posix_types.h#n88)?
 
 ```
 typedef long            __kernel_long_t;
@@ -158,10 +157,9 @@ typedef __kernel_long_t         __kernel_suseconds_t;
 typedef __kernel_long_t __kernel_time_t;
 ```
 
-What's a `__u16`?  We're pretty sure it's an unsigned 16 bit integer.
-Likewise `__s32` should be a signed 32-bit integer:
-
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/int-l64.h#n23
+What's a [`__u16`](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/asm-generic/int-l64.h#n23)?
+We're pretty sure it's an unsigned 16 bit integer.  Likewise `__s32` should
+be a signed 32-bit integer:
 
 ```
 typedef unsigned short __u16;
