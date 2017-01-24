@@ -1,4 +1,4 @@
-require 'device_input/codes'
+require 'device_input/labels'
 
 module DeviceInput
   class Event
