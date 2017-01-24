@@ -9,14 +9,32 @@ privilege to read /dev/input it's game over anyway.
 
 ## Rationale
 
-/dev/input/eventX is just a character device.  Can't we read it with simple
+`/dev/input/eventX` is just a character device.  Can't we read it with simple
 Unix tooling?  Yes and no.  First of all, a character device just means that
 it passes bytes (not necessarily characters or strings) from userspace into
 the kernel.  Secondarily, the messages (defined as C structs) are in fact
 binary and not strings or conventional characters.
 
 So we'd like to be able to read entire messages, one at a time, decode them,
-and display useful things like labels in the output.
+and display useful things like labels in the output.  It turns out that,
+on my system at least, `/dev/input/event0` refuses reads that are not a
+multiple of the data structure byte length.  So whatever tool used to read
+the device must know about the data structure of the messages.
+
+For a long time, it was pretty simple: 16 bytes.  8 bytes for timestamp,
+2 bytes for metadata / classification, and a 2 byte value.  However, with
+the widespread adoption of 64-bit platforms, timestamps in the kernel got
+(conditionally) bigger.  The `long` type in C became platform-dependent:
+32 bits (4 bytes) on a 32-bit platform and 64 bits (8 bytes) on a 64-bit
+platform.  Since a timestamp is composed of 2 longs, the byte size for a
+kernel input_event struct increases from 16 bytes to 24 bytes on a 64-bit
+platform.
+
+Any software must be aware of this distinction and choose the correct
+underlying data types just to be able to delimit messages and perform a
+successful read (without a decode).  This software does that, maps the encoded
+values to friendly strings for display, and provides both library and
+executable code to assist in examining kernel input events.
 
 # Installation
 
