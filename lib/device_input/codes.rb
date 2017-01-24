@@ -3,7 +3,10 @@ module DeviceInput
 
   # type = Sync
   CODES[0] = {
-    0 => 'Sync',
+    0 => ['SYN_REPORT', 'Report'],
+    1 => ['SYN_CONFIG', 'Config'],
+    2 => ['SYN_MT_REPORT', 'Multitouch'],
+    3 => ['SYN_DROPPED', 'Desync'],
   }
 
   # type = Key

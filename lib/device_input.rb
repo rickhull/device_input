@@ -19,17 +19,18 @@ module DeviceInput
 
     # these are just labels, not used internally
     TYPES = {
-      0 => 'Sync',
-      1 => 'Key',
-      2 => 'Relative',
-      3 => 'Absolute',
-      4 => 'Misc',
-      17 => 'LED',
-      18 => 'Sound',
-      20 => 'Repeat',
-      21 => 'ForceFeedback',
-      22 => 'Power',
-      23 => 'ForceFeedbackStatus',
+      0x00 => ['EV_SYN', 'Sync'],
+      0x01 => ['EV_KEY', 'Key'],
+      0x02 => ['EV_REL', 'Relative'],
+      0x03 => ['EV_ABS', 'Absolute'],
+      0x04 => ['EV_MSC', 'Misc'],
+      0x05 => ['EV_SW',  'ToggleSwitch'],
+      0x17 => ['EV_LED', 'LED'],
+      0x18 => ['EV_SND', 'Sound'],
+      0x20 => ['EV_REP', 'Repeat'],
+      0x21 => ['EV_FF',  'ForceFeedback'],
+      0x22 => ['EV_PWR', 'Power'],
+      0x23 => ['EV_FF_STATUS', 'ForceFeedbackStatus'],
     }
 
     # convert Event::Data to a string
@@ -42,14 +43,21 @@ module DeviceInput
       Data.new *binstr.unpack(PACK)
     end
 
-    def self.type_str(type_code)
-      TYPES[type_code] || "UNK-#{type_code}"
+    # return an array from [raw ... pretty]
+    def self.type_labels(type_code)
+      TYPES[type_code] || ["UNK-#{type_code}"]
     end
 
-    def self.code_str(type_code, code_code)
+    # return an array from [raw ... pretty]
+    def self.code_labels(type_code, code_code)
       require 'device_input/codes'
-      DeviceInput::CODES.dig(type_code, code_code) ||
-        "UNK-#{type_code}-#{code_code}"
+      labels = DeviceInput::CODES.dig(type_code, code_code)
+      if labels
+        # not all labels have been converted to arrays yet
+        labels.kind_of?(Enumerable) ? labels : [labels]
+      else
+        ["UNK-#{type_code}-#{code_code}"]
+      end
     end
 
     NULL_DATA = Data.new(0, 0, 0, 0, 0)
@@ -61,8 +69,9 @@ module DeviceInput
     def initialize(data)
       @data = data
       @time = Time.at(data.tv_sec, data.tv_usec)
-      @type = self.class.type_str(data.type)
-      @code = self.class.code_str(data.type, data.code)
+      # take the raw label, closest to the metal
+      @type = self.class.type_labels(data.type).first
+      @code = self.class.code_labels(data.type, data.code).first
     end
 
     def value
@@ -71,6 +80,31 @@ module DeviceInput
 
     def to_s
       [@type, @code, @data.value].join(':')
+    end
+
+    # show timestamp and use the last of the labels
+    def pretty
+      [@time.strftime("%Y-%m-%d %H:%M:%S.%L"),
+       [self.class.type_labels(@data.type).last,
+        self.class.code_labels(@data.type, @data.code).last,
+        @data.value].join(':'),
+      ].join(" ")
+    end
+
+    # don't use any labels
+    def raw
+      [@data.type, @data.code, @data.value].join(':')
+    end
+
+    # display fields in hex
+    def bytes
+      require 'rbconfig/sizeof'
+      DEFINITION.inject('') { |memo, (field, type)|
+        int = @data.send(field)
+        width = RbConfig::SIZEOF.fetch(type)
+        puts "int: #{int}; bytes: #{width}"
+        memo + ("%#0.#{width * 2}x" % int) + " "
+      }
     end
   end
 

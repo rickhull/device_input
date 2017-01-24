@@ -3,7 +3,22 @@
 require 'device_input'
 
 device = ARGV.shift || '/dev/input/event0'
+mode = (ARGV.shift || 'normal').downcase
+
+if !File.readable?(device)
+  puts "#{device} cannot be read.  Perhaps you need to sudo?"
+  exit 1
+end
+
+case mode
+when 'normal'
+  mode = 'to_s'
+when 'pretty', 'raw', 'bytes'
+  # ok
+else
+  raise "unsupported mode: #{mode}"
+end
 
 DeviceInput.read_from(device) { |event|
-  puts event
+  puts event.send(mode)
 }
