@@ -14,6 +14,7 @@ module DeviceInput
     }
     PACK = DEFINITION.values.map { |v| PACK_MAP.fetch(v) }.join
 
+    # this defines a class, i.e. class Data ...
     Data = Struct.new(*DEFINITION.keys)
 
     # convert Event::Data to a string
@@ -39,7 +40,7 @@ module DeviceInput
     NULL_DATA = Data.new(0, 0, 0, 0, 0)
     NULL_MSG = self.encode(NULL_DATA)
 
-    attr_reader :data, :time, :type, :code, :length
+    attr_reader :data, :time, :type, :code
 
     def initialize(data)
       @data = data
@@ -74,8 +75,8 @@ module DeviceInput
     File.open(filename, 'r') { |f|
       loop {
         bytes = f.read(Event::BYTE_LENGTH)
-        msg = Event.decode(bytes)
-        yield Event.new(msg)
+        data = Event.decode(bytes)
+        yield Event.new(data)
       }
     }
   end
