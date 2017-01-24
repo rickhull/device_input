@@ -22,7 +22,7 @@ to delimit individual messages and decode them.  We can't simply read a byte
 at a time and try to make sense of it.  In fact, on my system,
 `/dev/input/event0` refuses any read that is not a multiple of the struct /
 message size, so we need to know the message size before even attempting a
-read(), without even a decode().
+`read()`, let alone a `decode()`.
 
 To determine the message size, we need to know the data structure.  For a
 long time, it was pretty simple: events are 16 bytes:
