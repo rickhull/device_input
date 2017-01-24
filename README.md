@@ -209,4 +209,4 @@ value      __s32    int32_t   l
 # Acknowledgments
 
 * Inspired by https://github.com/prullmann/libdevinput (don't use it)
-* https://github.com/al2o3cr for feedback in #ruby on Freenode
+* Thanks to al2o3-cr from #ruby on Freenode for feedback
