@@ -17,22 +17,32 @@ it passes bytes (not necessarily characters or strings) from userspace into
 the kernel.  Secondarily, the messages (defined as C structs) are in fact
 binary and not strings or conventional characters.
 
-So we'd like to be able to read entire messages, one at a time, decode them,
-and display useful things like labels in the output.  It turns out that,
-on my system at least, `/dev/input/event0` refuses reads that are not a
-multiple of the data structure byte length.  So whatever tool used to read
-the device must know about the data structure of the messages.
+Since these are C structs (analagous to a binary message), we need to be able
+to delimit individual messages and decode them.  We can't simply read a byte
+at a time and try to make sense of it.  In fact, on my system,
+`/dev/input/event0` refuses any read that is not a multiple of the struct /
+message size, so we need to know the message size before even attempting a
+read(), without even a decode().
 
-For a long time, it was pretty simple: 16 bytes.  8 bytes for timestamp,
-2 bytes for metadata / classification, and a 2 byte value.  However, with
-the widespread adoption of 64-bit platforms, timestamps in the kernel got
-(conditionally) bigger.  The `long` type in C became platform-dependent:
-32 bits (4 bytes) on a 32-bit platform and 64 bits (8 bytes) on a 64-bit
-platform.  Since a timestamp is composed of 2 longs, the byte size for a
-kernel input_event struct increases from 16 bytes to 24 bytes on a 64-bit
-platform.
+To determine the message size, we need to know the data structure.  For a
+long time, it was pretty simple: events are 16 bytes:
 
-Any software must be aware of this distinction and choose the correct
+* timestamp - 8 bytes
+* type - 1 byte
+* code - 1 byte
+* value - 2 bytes
+
+However, this is only true for 32-bit platforms.  On 64-bit platforms, event
+timestamps became 16 bytes, increasing events from 16 to 24 bytes.  This is
+because a timestamp is defined as two `long`s, and `long`s are bigger on
+64-bit platforms.  It's easy to remember:
+
+* 32-bit platform: 32-bit `long` (4 bytes)
+* 64-bit platform: 64-bit `long` (8 bytes)
+
+`read(/dev/input/event0, 16)` will fail on a 64-bit machine.
+
+Your tooling must be aware of this distinction and choose the correct
 underlying data types just to be able to delimit messages and perform a
 successful read (without a decode).  This software does that, maps the encoded
 values to friendly strings for display, and provides both library and
@@ -54,6 +64,8 @@ gem 'device_input', '~> 0.0'
 
 # Usage
 
+## Executable
+
 ```
 $ sudo devsniff /dev/input/event0`
 ```
@@ -67,6 +79,24 @@ Key:F:0
 Sync:Sync:0
 
 ```
+
+## Library
+
+```
+require 'device_input'
+
+DeviceInput.read_from('/dev/input/event0') do |event|
+  puts event
+end
+```
+
+An event has:
+
+* `#data` - a Struct of ints (class name Data)
+* `#time` - a Time, accurate to usecs
+* `#type` - a String, possibly UNK-X where X is the integer from `#data`
+* `#code` - a String, possibly UNK-X-Y where X and Y are from `#data`
+* `#value` - a Fixnum (signed)
 
 # Research
 
