@@ -102,8 +102,8 @@ module DeviceInput
       DEFINITION.inject('') { |memo, (field, type)|
         int = @data.send(field)
         width = RbConfig::SIZEOF.fetch(type)
-        puts "int: #{int}; bytes: #{width}"
-        memo + ("%#0.#{width * 2}x" % int) + " "
+        # memo + ("%#0.#{width * 2}x" % int) + " "
+        memo + ("%0.#{width * 2}x" % int) + " "
       }
     end
   end
