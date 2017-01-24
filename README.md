@@ -51,9 +51,9 @@ executable code to assist in examining kernel input events.
 
 # Installation
 
-Requirements: Ruby >= 2.0
+REQUIREMENTS Ruby >= 2.0
 
-Dependencies: none
+DEPENDENCIES none
 
 Install the gem:
 ```
