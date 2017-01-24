@@ -28,8 +28,8 @@ To determine the message size, we need to know the data structure.  For a
 long time, it was pretty simple: events are 16 bytes:
 
 * timestamp - 8 bytes
-* type - 2 byte
-* code - 2 byte
+* type - 2 bytes
+* code - 2 bytes
 * value - 4 bytes
 
 However, this is only true for 32-bit platforms.  On 64-bit platforms, event
