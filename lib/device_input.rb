@@ -50,8 +50,12 @@ module DeviceInput
       @value = data.value
     end
 
+    def value
+      @data.value
+    end
+
     def to_s
-      [@type, @code, @value].join(':')
+      [@type, @code, @data.value].join(':')
     end
 
     TYPES = {
