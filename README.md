@@ -111,7 +111,7 @@ An event has:
 * `#value`: Fixnum (signed) from `#data`
 
 You will probably want to write your own read loop for your own project.
-[`DeviceInput.read_from`](lib/device_input.rb#L111) is very simple and can
+[`DeviceInput.read_from`](lib/device_input.rb#L97) is very simple and can
 easily be rewritten outside of this project's namespace and adapted for your
 needs.
 
