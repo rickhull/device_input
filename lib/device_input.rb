@@ -49,7 +49,7 @@ module DeviceInput
       @data = data
       @time = Time.at(data.tv_sec, data.tv_usec)
       @type = self.class.type_str(data.type)
-      @code = self.class.code_str(data.code)
+      @code = self.class.code_str(data.type, data.code)
       @value = data.value
     end
 
