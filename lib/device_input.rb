@@ -29,7 +29,7 @@ module DeviceInput
 
     # convert string to Event::Data
     def self.decode(binstr)
-      Data.new *binstr.unpack(PACK)
+      Data.new(*binstr.unpack(PACK))
     end
 
     # return an array of equivalent labels, prettier toward the end
