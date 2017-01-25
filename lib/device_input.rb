@@ -87,7 +87,7 @@ module DeviceInput
 
     # display fields in hex
     def ruby23_hex
-      require 'rbconfig/sizeof'
+      require 'rbconfig/sizeof'  # new in ruby 2.3
       DEFINITION.inject('') { |memo, (field, type)|
         int = @data.send(field)
         width = RbConfig::SIZEOF.fetch(type)
