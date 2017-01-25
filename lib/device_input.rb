@@ -1,4 +1,5 @@
 require 'device_input/labels'
+require 'device_input/compat'
 
 module DeviceInput
   class Event
@@ -85,7 +86,7 @@ module DeviceInput
     end
 
     # display fields in hex
-    def hex
+    def ruby23_hex
       require 'rbconfig/sizeof'
       DEFINITION.inject('') { |memo, (field, type)|
         int = @data.send(field)
@@ -94,6 +95,8 @@ module DeviceInput
         memo + ("%0.#{width * 2}x" % int) + " "
       }
     end
+
+    alias_method :hex, RUBY23 ? :ruby23_hex : :to_s
   end
 
   # never gonna give you up
