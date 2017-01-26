@@ -17,8 +17,10 @@ bin/evdump
 VERSION
 )
   s.executables = ['evdump']
-  s.add_development_dependency "buildar", "~> 2"
+
   s.required_ruby_version = "~> 2"
+  s.add_development_dependency "buildar", "~> 2"
+  s.add_development_dependency "slop", "~> 4"
 
   s.version = File.read(File.join(__dir__, 'VERSION')).chomp
 end
