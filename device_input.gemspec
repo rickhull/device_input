@@ -13,10 +13,10 @@ README.md
 lib/device_input.rb
 lib/device_input/labels.rb
 lib/device_input/compat.rb
-bin/devsniff
+bin/evdump
 VERSION
 )
-  s.executables = ['devsniff']
+  s.executables = ['evdump']
   s.add_development_dependency "buildar", "~> 2"
   s.required_ruby_version = "~> 2"
 

@@ -74,7 +74,7 @@ gem 'device_input', '~> 0.1'
 ## Executable
 
 ```shell
-$ sudo devsniff /dev/input/event0
+$ sudo evdump /dev/input/event0
 ```
 
 When the `f` key is pressed:
@@ -96,7 +96,7 @@ EV_SYN:SYN_REPORT:0
 
 How about pretty mode?
 ```shell
-$ sudo devsniff /dev/input/event0 pretty
+$ sudo evdump /dev/input/event0 pretty
 
 # f
 
@@ -110,7 +110,7 @@ $ sudo devsniff /dev/input/event0 pretty
 
 We can pull off the labels and go raw:
 ```shell
-$ sudo devsniff /dev/input/event0 raw
+$ sudo evdump /dev/input/event0 raw
 
 # f
 
@@ -124,7 +124,7 @@ $ sudo devsniff /dev/input/event0 raw
 
 Fulfill your hacker-matrix fantasies:
 ```shell
-$ sudo devsniff /dev/input/event0 hex
+$ sudo evdump /dev/input/event0 hex
 
 # f
 
