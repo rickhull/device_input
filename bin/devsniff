@@ -1,26 +1,40 @@
 #!/usr/bin/env ruby
 
 require 'device_input'
+require 'slop'
 
-device = ARGV.shift || '/dev/input/event0'
-mode = (ARGV.shift || 'normal').downcase
+opts = Slop.parse do |o|
+  o.banner = "evdump [OPTIONS] [DEVICE]"
+  o.string '-p', '--print', 'pretty|raw|hex'
+  o.on '-h', '--help' do
+    puts o
+    exit
+  end
+end
 
-if !File.readable?(device)
-  puts "#{device} cannot be read.  Perhaps you need to sudo?"
+def opts.error(msg = nil)
+  puts self
+  puts "ERROR: #{msg}" if msg
   exit 1
 end
 
-case mode
-when 'normal'
-  mode = 'to_s'
-when 'bytes'     # legacy
-  mode = 'hex'
+case opts[:print]
 when 'pretty', 'raw', 'hex'
-  # ok
+  print_meth = opts[:print]
 else
-  raise "unsupported mode: #{mode}"
+  print_meth = 'to_s'
 end
 
-DeviceInput.read_from(device) { |event|
-  puts event.send(mode)
+if $stdin.tty?
+  device = opts.arguments.shift
+  opts.error "Please specify an input device file" unless device
+  opts.error "#{device} is not a character device" unless File.chardev? device
+  opts.error "#{device} is not readable" unless File.readable? device
+  device = File.new(device, 'r')
+else
+  device = $stdin
+end
+
+DeviceInput.read_loop(device) { |event|
+  puts event.send(print_meth)
 }
