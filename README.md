@@ -163,7 +163,7 @@ You will probably want to write your own read loop for your own project.
 easily be rewritten outside of this project's namespace and adapted for your
 needs.
 
-# Research
+# Background
 
 ## Kernel docs
 
