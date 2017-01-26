@@ -142,9 +142,11 @@ $ sudo devsniff /dev/input/event0 hex
 require 'device_input'
 
 # this loops forever and blocks waiting for input
-DeviceInput.read_from('/dev/input/event0') do |event|
-  puts event
-  # break if event.time > start + 30
+File.open('/dev/input/event0', 'r') do |dev|
+  DeviceInput.read_loop(dev) do |event|
+    puts event
+    # break if event.time > start + 30
+  end
 end
 ```
 
@@ -157,7 +159,7 @@ An event has:
 * `#value`: Fixnum (signed) from `#data`
 
 You will probably want to write your own read loop for your own project.
-[`DeviceInput.read_from`](lib/device_input.rb#L100) is very simple and can
+[`DeviceInput.read_loop`](lib/device_input.rb#L102) is very simple and can
 easily be rewritten outside of this project's namespace and adapted for your
 needs.
 
