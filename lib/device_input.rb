@@ -99,14 +99,12 @@ module DeviceInput
     alias_method :hex, RUBY23 ? :ruby23_hex : :to_s
   end
 
-  # never gonna give you up
-  def self.read_from(filename)
-    File.open(filename, 'r') { |f|
-      loop {
-        bytes = f.read(Event::BYTE_LENGTH)
-        data = Event.decode(bytes)
-        yield Event.new(data)
-      }
+  def self.read_loop(io)
+    loop {
+      bytes = io.read(Event::BYTE_LENGTH)
+      break unless (bytes and bytes.length == Event::BYTE_LENGTH)
+      data = Event.decode(bytes)
+      yield Event.new(data)
     }
   end
 end
