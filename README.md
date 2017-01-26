@@ -74,7 +74,7 @@ gem 'device_input', '~> 0.3'
 ## Executable
 
 ```shell
-$ evdump /dev/input/event0 # sudo as nec
+$ evdump /dev/input/event0 # sudo as necessary
 ```
 
 When the `f` key is pressed:
@@ -208,7 +208,7 @@ What's a [`__kernel_time_t`](https://git.kernel.org/cgit/linux/kernel/git/torval
 ```
 typedef long            __kernel_long_t;
 # ...
-typedef __kernel_long_t         __kernel_suseconds_t;
+typedef __kernel_long_t __kernel_suseconds_t;
 # ...
 typedef __kernel_long_t __kernel_time_t;
 ```
