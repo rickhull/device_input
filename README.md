@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/rickhull/device_input.svg?branch=master)](https://travis-ci.org/rickhull/device_input)
+[![Gem Version](https://badge.fury.io/rb/device_input.svg)](http://badge.fury.io/rb/device_input)
+[![Dependency Status](https://gemnasium.com/rickhull/device_input.svg)](https://gemnasium.com/rickhull/device_input)
+[![Security Status](https://hakiri.io/github/rickhull/device_input/master.svg)](https://hakiri.io/github/rickhull/device_input/master)
+
 # Device Input
 
 *for the Linux kernel*
