@@ -12,6 +12,7 @@ EOF
 README.md
 lib/device_input.rb
 lib/device_input/labels.rb
+lib/device_input/compat.rb
 bin/devsniff
 VERSION
 )
