@@ -141,8 +141,8 @@ $ sudo cat /dev/input/event0 | evdump --print hex
 ```ruby
 require 'device_input'
 
-# this loops forever and blocks waiting for input
 File.open('/dev/input/event0', 'r') do |dev|
+  # this loops forever and blocks waiting for input
   DeviceInput.read_loop(dev) do |event|
     puts event
     # break if event.time > start + 30
