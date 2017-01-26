@@ -1,3 +1,5 @@
+require 'device_input/labels'
+
 module DeviceInput
   if RbConfig::CONFIG.fetch("MAJOR").to_i < 2
     raise "unsupported ruby version #{RbConfig::CONFIG['RUBY_VERSION_NAME']}"
