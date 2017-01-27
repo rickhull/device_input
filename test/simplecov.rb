@@ -1,7 +1,7 @@
 require 'simplecov'
 
 class SimpleCov::Formatter::TextFormatter
-  FILENAME = 'metrics/coverage.txt'
+  FILENAME = 'metrics/coverage'
 
   def format(result)
     tot = result.files
