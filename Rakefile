@@ -24,13 +24,13 @@ task :code_metrics => [:flog, :flay, :roodi]
 desc "Run flog on lib/"
 task :flog do
   puts
-  sh "flog lib | tee metrics/flog"
+  sh "flog --all --methods-only lib | tee metrics/flog"
 end
 
 desc "Run flay on lib/"
 task :flay do
   puts
-  sh "flay lib | tee metrics/flay"
+  sh "flay --liberal --verbose lib | tee metrics/flay"
 end
 
 desc "Run roodi on lib/"
