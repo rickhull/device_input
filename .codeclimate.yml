@@ -9,6 +9,9 @@ engines:
     enabled: true
   rubocop:
     enabled: true
+    exclude_fingerprints:
+      # Event class is too large because of all the labels
+      - b884ccb8de4e7bdfcfa801c4c79bebb9
 ratings:
   paths:
   - "**.rb"
