@@ -41,6 +41,18 @@ describe DeviceInput::Event do
     end
   end
 
+  describe "encode" do
+    it "must return a string" do
+      E.encode(E::NULL_DATA).must_be_instance_of(String)
+    end
+  end
+
+  describe "decode" do
+    it "must return a Data (struct)" do
+      E.decode(E::NULL_MSG).must_be_instance_of(E::Data)
+    end
+  end
+
   describe "new instance" do
     before do
       @event = E.new(E::NULL_DATA)
@@ -70,6 +82,23 @@ describe DeviceInput::Event do
       [:to_s, :pretty, :raw, :hex].each { |meth|
         @event.send(meth).must_be_instance_of(String)
       }
+    end
+  end
+end
+
+describe DeviceInput do
+  describe "read_loop" do
+    before do
+      @io = StringIO.new("\x00" * 64)
+    end
+
+    it "must read at least one message from an io with 64 bytes" do
+      events = []
+      DeviceInput.read_loop(@io) { |event|
+        events << event
+      }
+      events.wont_be_empty
+      events.first.must_be_instance_of(E)
     end
   end
 end
