@@ -28,20 +28,35 @@ task :roodi do
   sh "roodi lib | tee metrics/roodi"
 end
 
+rprof_options = {
+  min_percent: 2,
+  printer: :graph,
+  mode: :process,
+  sort: :self,
+}.inject('') { |memo, (flag,val)| memo + "--#{flag}=#{val} " }
+
+evdump_options = {
+  count: 9999,
+  print: 'off',
+}.inject('') { |memo, (flag,val)| memo + "--#{flag} #{val} " }
+
 # this runs against the installed gem lib, not git / filesystem
 desc "Run ruby-prof on bin/evdump (9999 events)"
 task "ruby-prof" => "loadavg" do
-  sh ["ruby-prof -m1 -p graph",
-      "bin/evdump -- -c 9999 -p off /dev/zero",
-      "| tee metrics/ruby-prof"].join(' ')
+  sh "ruby-prof #{rprof_options} \
+                bin/evdump -- #{evdump_options} \
+                              /dev/zero \
+        | tee metrics/ruby-prof"
 end
 
 # this runs against the installed gem lib, not git / filesystem
 desc "Run ruby-prof with --exclude-common-cycles"
 task "ruby-prof-exclude" => "loadavg" do
-  sh ["ruby-prof -m1 -p graph --exclude-common-cycles",
-      "bin/evdump -- -c 9999 -p off /dev/zero",
-      "| tee metrics/ruby-prof-exclude"].join(' ')
+  sh "ruby-prof #{rprof_options} \
+                --exclude-common-cycles \
+                bin/evdump -- #{evdump_options} \
+                              /dev/zero \
+        | tee metrics/ruby-prof-exclude"
 end
 
 desc "Show current system load"
