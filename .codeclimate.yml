@@ -12,6 +12,8 @@ engines:
     exclude_fingerprints:
       # Event class is too large because of all the labels
       - b884ccb8de4e7bdfcfa801c4c79bebb9
+      # LoadError for opportunistically loading Buildar tasks
+      - 5b0714ee48391458a7484df9bc2ac262
 ratings:
   paths:
   - "**.rb"
