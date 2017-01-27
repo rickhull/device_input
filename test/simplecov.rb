@@ -17,9 +17,11 @@ class SimpleCov::Formatter::TextFormatter
           ].join("\n")
     puts
     puts rpt
-    File.open(FILENAME, 'w') { |f|
-      f.write(rpt + "\n")
-    }
-    puts "wrote #{FILENAME}"
+    if File.writable?(FILENAME)
+      File.open(FILENAME, 'w') { |f|
+        f.write(rpt + "\n")
+      }
+      puts "wrote #{FILENAME}"
+    end
   end
 end
