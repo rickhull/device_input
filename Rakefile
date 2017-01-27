@@ -28,6 +28,27 @@ task :roodi do
   sh "roodi lib | tee metrics/roodi"
 end
 
+# this runs against the installed gem lib, not git / filesystem
+desc "Run ruby-prof on bin/evdump (9999 events)"
+task "ruby-prof" => "loadavg" do
+  sh ["ruby-prof -m1 -p graph",
+      "bin/evdump -- -c 9999 -p off /dev/zero",
+      "| tee metrics/ruby-prof"].join(' ')
+end
+
+# this runs against the installed gem lib, not git / filesystem
+desc "Run ruby-prof with --exclude-common-cycles"
+task "ruby-prof-exclude" => "loadavg" do
+  sh ["ruby-prof -m1 -p graph --exclude-common-cycles",
+      "bin/evdump -- -c 9999 -p off /dev/zero",
+      "| tee metrics/ruby-prof-exclude"].join(' ')
+end
+
+desc "Show current system load"
+task "loadavg" do
+  puts File.read "/proc/loadavg"
+end
+
 begin
   require 'buildar'
 

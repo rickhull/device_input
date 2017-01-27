@@ -5,7 +5,7 @@ require 'slop'
 
 opts = Slop.parse do |o|
   o.banner = "evdump [OPTIONS] [DEVICE]"
-  o.string '-p', '--print', 'pretty|raw|hex'
+  o.string '-p', '--print', 'pretty|raw|hex|off'
   o.int '-d', '--duration', 'number of seconds to read input [inf]'
   o.int '-c', '--count', 'number of events to read [inf]'
   o.on '-h', '--help' do
@@ -21,6 +21,8 @@ def opts.error(msg = nil)
 end
 
 case opts[:print]
+when 'off'
+  print_meth = nil
 when 'pretty', 'raw', 'hex'
   print_meth = opts[:print]
 else
@@ -38,13 +40,15 @@ else
 end
 
 start = Time.now
+duration = opts[:duration]
 count = 0
+max = opts[:count]
 
 DeviceInput.read_loop(device) { |event|
-  puts event.send(print_meth)
-  if opts[:count]
+  puts event.send(print_meth) if print_meth
+  if max
     count += 1
-    break if count >= opts[:count]
+    break if count >= max
   end
-  break if opts[:duration] and Time.now - start > opts[:duration]
+  break if duration and Time.now - start > duration
 }
