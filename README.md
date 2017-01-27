@@ -2,6 +2,7 @@
 [![Gem Version](https://badge.fury.io/rb/device_input.svg)](http://badge.fury.io/rb/device_input)
 [![Dependency Status](https://gemnasium.com/rickhull/device_input.svg)](https://gemnasium.com/rickhull/device_input)
 [![Security Status](https://hakiri.io/github/rickhull/device_input/master.svg)](https://hakiri.io/github/rickhull/device_input/master)
+[![Code Climate](https://codeclimate.com/github/rickhull/device_input/badges/gpa.svg)](https://codeclimate.com/github/rickhull/device_input)
 
 # Device Input
 
