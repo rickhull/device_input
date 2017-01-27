@@ -1,0 +1,5 @@
+   220.8: flog total
+    14.7: flog/method average
+
+   117.4: DeviceInput::Event#none
+    21.1: DeviceInput::Event#pretty        lib/device_input.rb:75
