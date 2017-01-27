@@ -6,6 +6,8 @@ require 'slop'
 opts = Slop.parse do |o|
   o.banner = "evdump [OPTIONS] [DEVICE]"
   o.string '-p', '--print', 'pretty|raw|hex'
+  o.int '-d', '--duration', 'number of seconds to read input [inf]'
+  o.int '-c', '--count', 'number of events to read [inf]'
   o.on '-h', '--help' do
     puts o
     exit
@@ -35,6 +37,14 @@ else
   device = $stdin
 end
 
+start = Time.now
+count = 0
+
 DeviceInput.read_loop(device) { |event|
   puts event.send(print_meth)
+  if opts[:count]
+    count += 1
+    break if count >= opts[:count]
+  end
+  break if opts[:duration] and Time.now - start > opts[:duration]
 }
