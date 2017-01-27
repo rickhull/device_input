@@ -1,3 +1,10 @@
+if ENV['CODE_COVERAGE']
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter "/compat"
+  end
+end
+
 require 'minitest/autorun'
 require 'device_input'
 
