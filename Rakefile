@@ -54,6 +54,7 @@ desc "Run ruby-prof with --exclude-common-cycles"
 task "ruby-prof-exclude" => "loadavg" do
   sh "ruby-prof #{rprof_options} \
                 --exclude-common-cycles \
+                --exclude-common-callbacks \
                 bin/evdump -- #{evdump_options} \
                               /dev/zero \
         | tee metrics/ruby-prof-exclude"
