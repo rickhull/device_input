@@ -2,8 +2,6 @@ require_relative './simplecov.rb'
 SimpleCov.start do
   add_filter "/compat"
   formatter SimpleCov::Formatter::TextFormatter
-  minimum_coverage 95
-  minimum_coverage_by_file 80
 end
 
 require 'minitest/autorun'
