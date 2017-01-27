@@ -1,6 +1,7 @@
 Coverage: 100.0%
-Coverage strength: 2.39
-Lines Covered: 67 / 67
-Missed, Never, Skipped: 0, 508, 0
-100%	/home/rwh/src/device_input/lib/device_input.rb
-100%	/home/rwh/src/device_input/lib/device_input/labels.rb
+Strength: 2.39
+   Lines: 67
+ Covered: 67
+     N/A: 508
+100% (49/49)	/home/rwh/src/device_input/lib/device_input.rb
+100% (18/18)	/home/rwh/src/device_input/lib/device_input/labels.rb
