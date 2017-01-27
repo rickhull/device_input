@@ -1,7 +1,7 @@
 require_relative './simplecov.rb'
 SimpleCov.start do
   add_filter "/compat"
-  formatter SimpleCov::Formatter::TextFormatter
+  self.formatters = [formatter, SimpleCov::Formatter::TextFormatter]
 end
 
 require 'minitest/autorun'
