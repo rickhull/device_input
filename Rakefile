@@ -4,7 +4,7 @@ task default: :test
 
 desc "Run minitest specs with code coverage"
 Rake::TestTask.new :test do |t|
-  t.pattern = 'test/*.rb'
+  t.pattern = 'test/*spec.rb'
 end
 
 desc "Generate code metrics reports"
