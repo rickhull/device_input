@@ -40,13 +40,7 @@ module DeviceInput
 
     # return an array of equivalent labels, prettier toward the end
     def self.code_labels(type_val, code_val)
-      labels = CODES.dig(type_val, code_val)
-      if labels
-        # not all labels have been converted to arrays yet
-        labels.kind_of?(String) ? [labels] : labels
-      else
-        ["UNK-#{type_val}-#{code_val}"]
-      end
+      CODES.dig(type_val, code_val) || ["UNK-#{type_val}-#{code_val}"]
     end
 
     NULL_DATA = Data.new(0, 0, 0, 0, 0)
