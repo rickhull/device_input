@@ -8,12 +8,14 @@
 
 *for the Linux kernel*
 
-We want to read events from e.g. `/dev/input/event0` in Ruby.  For example,
-if you want to see what's happening "on the wire" when you press a special
-function key on a laptop.  While this code can be used for the purpose of
-malicious keystroke logging, it is not well suited for it and does not provide
-the root privileges in order to read `/dev/input`.  Once you've got the
-privilege to read `/dev/input` it's *game over* anyway.
+This is a very basic tool for reading device input events from e.g.
+`/dev/input/event0` in Ruby.  For example, in order to see what's happening
+"on the wire" when a special laptop function key is pressed.  While this tool
+can plausibly be used for the purpose of malicious keystroke logging, it is
+not well suited for it and does not provide the root privileges in order to
+read `/dev/input`.
+
+Once you've given up the privilege to read `/dev/input` it's *game over* anyway.
 
 ## Rationale
 
