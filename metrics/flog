@@ -1,9 +1,9 @@
-    86.7: flog total
-     7.2: flog/method average
+    80.1: flog total
+     6.7: flog/method average
 
-    21.1: DeviceInput::Event#pretty        lib/device_input.rb:69-74
+    17.3: DeviceInput::Event#pretty        lib/device_input.rb:69-74
     16.7: DeviceInput::Event#ruby23_hex    lib/device_input.rb:83-89
-    16.6: DeviceInput::Event#initialize    lib/device_input.rb:52-57
+    13.7: DeviceInput::Event#initialize    lib/device_input.rb:52-57
     10.3: DeviceInput::read_loop           lib/device_input.rb:96-102
      5.5: DeviceInput::Event::dig          lib/device_input/compat.rb:12-18
      5.0: DeviceInput::Event#raw           lib/device_input.rb:78-79
