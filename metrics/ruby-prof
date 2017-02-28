@@ -1,87 +1,86 @@
 Measure Mode: process_time_time
-Thread ID: 47443121762520
-Fiber ID: 47443122735180
-Total Time: 0.95596071
+Thread ID: 69908279000080
+Fiber ID: 69908280618300
+Total Time: 0.30377950000000004
 Sort by: self_time
 
   %total   %self      total       self       wait      child            calls     name
 --------------------------------------------------------------------------------
-                      0.544      0.144      0.000      0.400        9999/9999     Class#new
-  56.90%  15.06%      0.544      0.144      0.000      0.400             9999     DeviceInput::Event#initialize
-                      0.169      0.047      0.000      0.122        9999/9999     <Class::Time>#at
-                      0.070      0.048      0.000      0.022        9999/9999     <Class::DeviceInput::Event>#code_labels
-                      0.043      0.043      0.000      0.000      19998/20010     Kernel#class
-                      0.037      0.025      0.000      0.012        9999/9999     <Class::DeviceInput::Event>#type_labels
-                      0.035      0.035      0.000      0.000      19998/20001     Array#first
-                      0.018      0.018      0.000      0.000      19998/19998     DeviceInput::Event::Data#type
-                      0.010      0.010      0.000      0.000        9999/9999     DeviceInput::Event::Data#tv_sec
-                      0.009      0.009      0.000      0.000        9999/9999     DeviceInput::Event::Data#tv_usec
-                      0.009      0.009      0.000      0.000        9999/9999     DeviceInput::Event::Data#code
+                      0.141      0.060      0.000      0.081        9999/9999     Class#new
+  46.50%  19.76%      0.141      0.060      0.000      0.081             9999     DeviceInput::Event#initialize
+                      0.016      0.011      0.000      0.005        9999/9999     <Class::DeviceInput::Event>#code_labels
+                      0.015      0.011      0.000      0.005        9999/9999     <Class::DeviceInput::Event>#type_labels
+                      0.015      0.011      0.000      0.004        9999/9999     <Class::Time>#at
+                      0.008      0.008      0.000      0.000      19998/20005     Kernel#class
+                      0.008      0.008      0.000      0.000      19998/20000     Array#first
+                      0.008      0.008      0.000      0.000      19998/19998     DeviceInput::Event::Data#type
+                      0.004      0.004      0.000      0.000        9999/9999     DeviceInput::Event::Data#tv_sec
+                      0.004      0.004      0.000      0.000        9999/9999     DeviceInput::Event::Data#code
+                      0.004      0.004      0.000      0.000        9999/9999     DeviceInput::Event::Data#tv_usec
 --------------------------------------------------------------------------------
-                      0.929      0.137      0.000      0.792              1/1     <Module::DeviceInput>#read_loop
-  97.20%  14.32%      0.929      0.137      0.000      0.792                1     Kernel#loop
-                      0.586      0.042      0.000      0.544       9999/10021     Class#new
-                      0.113      0.035      0.000      0.078        9999/9999     <Class::DeviceInput::Event>#decode
-                      0.049      0.049      0.000      0.000        9999/9999     IO#read
-                      0.017      0.017      0.000      0.000       9999/10000     String#length
-                      0.010      0.010      0.000      0.000       9999/20012     Fixnum#+
-                      0.009      0.009      0.000      0.000       9999/10000     Fixnum#>=
-                      0.009      0.009      0.000      0.000        9999/9999     Fixnum#==
+                      0.292      0.058      0.000      0.234              1/1     <Module::DeviceInput>#read_loop
+  96.11%  19.13%      0.292      0.058      0.000      0.234                1     Kernel#loop
+                      0.153      0.011      0.000      0.141       9999/10015     Class#new
+                      0.046      0.016      0.000      0.031        9999/9999     <Class::DeviceInput::Event>#decode
+                      0.017      0.017      0.000      0.000        9999/9999     IO#read
+                      0.005      0.005      0.000      0.000       9999/10000     String#length
+                      0.004      0.004      0.000      0.000       9999/20009     Integer#+
+                      0.004      0.004      0.000      0.000       9999/10000     Integer#>=
+                      0.004      0.004      0.000      0.000        9999/9999     Integer#==
 --------------------------------------------------------------------------------
-                      0.049      0.049      0.000      0.000        9999/9999     Kernel#loop
-   5.11%   5.11%      0.049      0.049      0.000      0.000             9999     IO#read
+                      0.017      0.017      0.000      0.000        9999/9999     Kernel#loop
+   5.73%   5.73%      0.017      0.017      0.000      0.000             9999     IO#read
 --------------------------------------------------------------------------------
-                      0.070      0.048      0.000      0.022        9999/9999     DeviceInput::Event#initialize
-   7.32%   5.03%      0.070      0.048      0.000      0.022             9999     <Class::DeviceInput::Event>#code_labels
-                      0.013      0.013      0.000      0.000        9999/9999     Hash#dig
-                      0.009      0.009      0.000      0.000        9999/9999     Kernel#kind_of?
+                      0.046      0.016      0.000      0.031        9999/9999     Kernel#loop
+  15.24%   5.11%      0.046      0.016      0.000      0.031             9999     <Class::DeviceInput::Event>#decode
+                      0.016      0.011      0.000      0.005       9999/10000     <Class::DeviceInput::Event::Data>#new
+                      0.015      0.015      0.000      0.000        9999/9999     String#unpack
 --------------------------------------------------------------------------------
-                      0.169      0.047      0.000      0.122        9999/9999     DeviceInput::Event#initialize
-  17.68%   4.90%      0.169      0.047      0.000      0.122             9999     <Class::Time>#at
-                      0.104      0.039      0.000      0.065        9999/9999     Numeric#quo
-                      0.009      0.009      0.000      0.000       9999/20012     Fixnum#+
-                      0.009      0.009      0.000      0.000       9999/10001     Fixnum#*
+                      0.015      0.015      0.000      0.000        9999/9999     <Class::DeviceInput::Event>#decode
+   4.90%   4.90%      0.015      0.015      0.000      0.000             9999     String#unpack
 --------------------------------------------------------------------------------
-                      0.000      0.000      0.000      0.000          4/20010     Gem::BasicSpecification#default_gem?
-                      0.000      0.000      0.000      0.000          1/20010     Gem::Version#initialize
-                      0.000      0.000      0.000      0.000          7/20010     Array#map!
-                      0.043      0.043      0.000      0.000      19998/20010     DeviceInput::Event#initialize
-   4.49%   4.49%      0.043      0.043      0.000      0.000            20010     Kernel#class
+                      0.000      0.000      0.000      0.000          1/10000     Kernel#require
+                      0.016      0.011      0.000      0.005       9999/10000     <Class::DeviceInput::Event>#decode
+   5.24%   3.72%      0.016      0.011      0.000      0.005            10000     <Class::DeviceInput::Event::Data>#new
+                      0.005      0.005      0.000      0.000      10000/10000     Struct#initialize
 --------------------------------------------------------------------------------
-                      0.000      0.000      0.000      0.000          1/10021     Slop::Parser#parse
-                      0.000      0.000      0.000      0.000          2/10021     Kernel#require
-                      0.000      0.000      0.000      0.000          1/10021     <Class::Gem::Version>#new
-                      0.000      0.000      0.000      0.000          1/10021     Slop::Options#initialize
-                      0.000      0.000      0.000      0.000          3/10021     <Class::Gem::Requirement>#create
-                      0.000      0.000      0.000      0.000          4/10021     Slop::Options#on
-                      0.000      0.000      0.000      0.000          3/10021     Gem::Specification#add_dependency_with_type
-                      0.000      0.000      0.000      0.000          4/10021     Gem::Specification#initialize
-                      0.001      0.000      0.000      0.001          1/10021     <Module::Slop>#parse
-                      0.003      0.000      0.000      0.003          2/10021     Kernel#eval
-                      0.586      0.042      0.000      0.544       9999/10021     Kernel#loop
-  61.75%   4.44%      0.590      0.042      0.000      0.548            10021    *Class#new
-                      0.544      0.144      0.000      0.400        9999/9999     DeviceInput::Event#initialize
-                      0.003      0.000      0.000      0.002              2/2     Gem::Specification#initialize
-                      0.001      0.000      0.000      0.001              1/1     Slop::Options#initialize
-                      0.000      0.000      0.000      0.000              7/7     Gem::Requirement#initialize
-                      0.000      0.000      0.000      0.000              3/3     Gem::Dependency#initialize
+                      0.000      0.000      0.000      0.000          1/10015     Slop::Parser#parse
+                      0.000      0.000      0.000      0.000          1/10015     Kernel#require
+                      0.000      0.000      0.000      0.000          1/10015     Slop::Options#initialize
+                      0.000      0.000      0.000      0.000          2/10015     Gem::Specification#initialize
+                      0.000      0.000      0.000      0.000          4/10015     Slop::Options#on
+                      0.000      0.000      0.000      0.000          3/10015     <Class::Gem::Requirement>#create
+                      0.000      0.000      0.000      0.000          2/10015     Gem::Specification#add_dependency_with_type
+                      0.000      0.000      0.000      0.000          1/10015     <Module::Slop>#parse
+                      0.001      0.000      0.000      0.001          1/10015     Kernel#eval
+                      0.153      0.011      0.000      0.141       9999/10015     Kernel#loop
+  50.50%   3.70%      0.153      0.011      0.000      0.142            10015    *Class#new
+                      0.141      0.060      0.000      0.081        9999/9999     DeviceInput::Event#initialize
+                      0.001      0.000      0.000      0.000              1/1     Gem::Specification#initialize
+                      0.000      0.000      0.000      0.000              1/1     Slop::Options#initialize
+                      0.000      0.000      0.000      0.000              5/5     Gem::Requirement#initialize
+                      0.000      0.000      0.000      0.000              2/2     Gem::Dependency#initialize
                       0.000      0.000      0.000      0.000              4/4     Slop::Option#initialize
-                      0.000      0.000      0.000      0.000              1/1     Gem::Version#initialize
                       0.000      0.000      0.000      0.000              1/1     Slop::Parser#initialize
                       0.000      0.000      0.000      0.000              1/1     Slop::Result#initialize
-                      0.000      0.000      0.000      0.000              2/2     Exception#initialize
+                      0.000      0.000      0.000      0.000              1/1     Exception#initialize
 --------------------------------------------------------------------------------
-                      0.104      0.039      0.000      0.065        9999/9999     <Class::Time>#at
-  10.84%   4.07%      0.104      0.039      0.000      0.065             9999     Numeric#quo
-                      0.048      0.030      0.000      0.018        9999/9999     Integer#to_r
-                      0.017      0.017      0.000      0.000        9999/9999     Rational#/
+                      0.016      0.011      0.000      0.005        9999/9999     DeviceInput::Event#initialize
+   5.29%   3.61%      0.016      0.011      0.000      0.005             9999     <Class::DeviceInput::Event>#code_labels
+                      0.005      0.005      0.000      0.000        9999/9999     Hash#dig
 --------------------------------------------------------------------------------
-                      0.113      0.035      0.000      0.078        9999/9999     Kernel#loop
-  11.79%   3.68%      0.113      0.035      0.000      0.078             9999     <Class::DeviceInput::Event>#decode
-                      0.045      0.032      0.000      0.013       9999/10000     <Class::DeviceInput::Event::Data>#new
-                      0.032      0.032      0.000      0.000        9999/9999     String#unpack
+                      0.015      0.011      0.000      0.004        9999/9999     DeviceInput::Event#initialize
+   4.87%   3.52%      0.015      0.011      0.000      0.004             9999     <Class::Time>#at
+                      0.004      0.004      0.000      0.000       9999/20009     Integer#+
 --------------------------------------------------------------------------------
-                      0.000      0.000      0.000      0.000          3/20001     Gem::Dependency#initialize
-                      0.035      0.035      0.000      0.000      19998/20001     DeviceInput::Event#initialize
-   3.66%   3.66%      0.035      0.035      0.000      0.000            20001     Array#first
+                      0.015      0.011      0.000      0.005        9999/9999     DeviceInput::Event#initialize
+   4.98%   3.50%      0.015      0.011      0.000      0.005             9999     <Class::DeviceInput::Event>#type_labels
+                      0.005      0.005      0.000      0.000       9999/10005     Hash#[]
 --------------------------------------------------------------------------------
+                      0.000      0.000      0.000      0.000          1/20009     Time#initialize
+                      0.000      0.000      0.000      0.000          2/20009     Slop::Option#ensure_call
+                      0.000      0.000      0.000      0.000          1/20009     Kernel#require
+                      0.000      0.000      0.000      0.000          3/20009     <Class::Time>#utc
+                      0.000      0.000      0.000      0.000          4/20009     Array#each
+                      0.004      0.004      0.000      0.000       9999/20009     <Class::Time>#at
+                      0.004      0.004      0.000      0.000       9999/20009     Kernel#loop
