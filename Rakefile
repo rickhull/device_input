@@ -40,24 +40,38 @@ evdump_options = {
   print: 'off',
 }.inject('') { |memo, (flag,val)| memo + "--#{flag} #{val} " }
 
-# this runs against the installed gem lib, not git / filesystem
 desc "Run ruby-prof on bin/evdump (9999 events)"
 task "ruby-prof" => "loadavg" do
-  sh "ruby-prof #{rprof_options} \
-                bin/evdump -- #{evdump_options} \
-                              /dev/zero \
-        | tee metrics/ruby-prof"
+  cmd = [
+    'ruby -Ilib',
+    '`which ruby-prof`',
+    rprof_options,
+    'bin/evdump',
+    '--',
+    evdump_options,
+    '/dev/zero',
+    '| tee metrics/ruby-prof',
+  ].join(' ')
+  sh cmd
+  puts
 end
 
-# this runs against the installed gem lib, not git / filesystem
 desc "Run ruby-prof with --exclude-common-cycles"
 task "ruby-prof-exclude" => "loadavg" do
-  sh "ruby-prof #{rprof_options} \
-                --exclude-common-cycles \
-                --exclude-common-callbacks \
-                bin/evdump -- #{evdump_options} \
-                              /dev/zero \
-        | tee metrics/ruby-prof-exclude"
+  cmd = [
+    'ruby -Ilib',
+    '`which ruby-prof`',
+    rprof_options,
+    '--exclude-common-cycles',
+    '--exclude-common-callbacks',
+    'bin/evdump',
+    '--',
+    evdump_options,
+    '/dev/zero',
+    '| tee metrics/ruby-prof-exclude',
+  ].join(' ')
+  sh cmd
+  puts
 end
 
 desc "Show current system load"
