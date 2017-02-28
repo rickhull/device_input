@@ -53,8 +53,8 @@ module DeviceInput
       @data = data # sorry for the name.  it's a Data. data everywhere
       @time = Time.at(data.tv_sec, data.tv_usec)
       # take the raw label, closest to the metal
-      @type = self.class.type_labels(data.type).first
-      @code = self.class.code_labels(data.type, data.code).first
+      @type = Event.type_labels(data.type).first
+      @code = Event.code_labels(data.type, data.code).first
     end
 
     def value
@@ -68,8 +68,8 @@ module DeviceInput
     # show timestamp and use the last of the labels
     def pretty
       [@time.strftime("%Y-%m-%d %H:%M:%S.%L"),
-       [self.class.type_labels(@data.type).last,
-        self.class.code_labels(@data.type, @data.code).last,
+       [Event.type_labels(@data.type).last,
+        Event.code_labels(@data.type, @data.code).last,
         @data.value].join(':'),
       ].join(" ")
     end
