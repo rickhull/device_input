@@ -1,4 +1,5 @@
 language: ruby
+bundler_args: --jobs 3 --without tasks
 rvm:
   - 2.1
   - 2.2
