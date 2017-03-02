@@ -1,5 +1,6 @@
 require 'device_input/labels'
 
+# :nocov:
 module DeviceInput
   if RbConfig::CONFIG.fetch("MAJOR").to_i < 2
     raise "unsupported ruby version #{RbConfig::CONFIG['RUBY_VERSION_NAME']}"
@@ -20,3 +21,4 @@ module DeviceInput
     end
   end
 end
+# :nocov:

@@ -81,6 +81,7 @@ module DeviceInput
 
     # display fields in hex
     def ruby23_hex
+      # :nocov:
       require 'rbconfig/sizeof'  # new in ruby 2.3
       DEFINITION.inject('') { |memo, (field, type)|
         int = @data.send(field)
@@ -88,6 +89,7 @@ module DeviceInput
         # memo + ("%#0.#{width * 2}x" % int) + " "
         memo + ("%0.#{width * 2}x" % int) + " "
       }
+      # :nocov:
     end
 
     alias_method :hex, RUBY23 ? :ruby23_hex : :to_s
