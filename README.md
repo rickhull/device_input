@@ -178,10 +178,7 @@ needs.
 * https://www.kernel.org/doc/Documentation/input/input.txt
 * https://www.kernel.org/doc/Documentation/input/event-codes.txt
 
-These events are defined as C structs with a fixed size in bytes.  See more
-about these structs towards the end of this document.
-
-## Kernel structs
+### Kernel structs
 
 from https://www.kernel.org/doc/Documentation/input/input.txt
 ```
