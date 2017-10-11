@@ -9,3 +9,4 @@ rvm:
   - jruby-9.1
   - jruby-head
 install: gem install minitest
+script: rake test
