@@ -1,31 +1,75 @@
 require 'rake/testtask'
-
-task default: :test
-
-desc "Run minitest specs with code coverage"
+desc "Run tests"
 Rake::TestTask.new :test do |t|
   t.pattern = 'test/*spec.rb'
 end
 
+task default: :test
+
+
+#
+# METRICS
+#
+
+metrics_tasks = []
+
+begin
+  require 'flog_task'
+
+  # we want: flog --all --methods-only lib
+  # but: FlogTask doesn't support the equivalent of --all; oh well
+  methods_only = true
+  FlogTask.new(:flog, 200, ['lib'], nil, methods_only) do |t|
+    t.verbose = true
+  end
+  metrics_tasks << :flog
+rescue LoadError
+  warn 'flog_task unavailable'
+end
+
+begin
+  require 'flay_task'
+
+  # we want: flay --liberal lib
+  # but: FlayTask doesn't support the equivalent of --liberal; oh well
+  FlayTask.new do |t|
+    t.dirs = ['lib']
+    t.verbose = true
+  end
+  metrics_tasks << :flay
+rescue LoadError
+  warn 'flay_task unavailable'
+end
+
+begin
+  require 'roodi_task'
+  RoodiTask.new patterns: ['lib/**/*.rb']
+  metrics_tasks << :roodi
+rescue LoadError
+  warn 'roodi_task unavailable'
+end
+
 desc "Generate code metrics reports"
-task :code_metrics => [:test, :flog, :flay, :roodi]
+task :code_metrics => metrics_tasks
 
-desc "Run flog on lib/"
-task :flog do
-  puts
-  sh "flog --all --methods-only lib | tee metrics/flog"
+
+#
+# PROFILING
+#
+
+desc "Show current system load"
+task "loadavg" do
+  puts File.read "/proc/loadavg"
 end
 
-desc "Run flay on lib/"
-task :flay do
-  puts
-  sh "flay --liberal --verbose lib | tee metrics/flay"
+# make sure command is run against lib/ on the filesystem, not an installed gem
+def lib_sh(cmd)
+  sh "RUBYLIB=lib #{cmd}"
 end
 
-desc "Run roodi on lib/"
-task :roodi do
-  puts
-  sh "roodi lib | tee metrics/roodi"
+# set up script, args, and rprof_args the way ruby-prof wants them
+def rprof_sh(script, args, rprof_args = '')
+  lib_sh ['ruby-prof', rprof_args, script, '--', args].join(' ')
 end
 
 rprof_options = {
@@ -38,46 +82,29 @@ rprof_options = {
 evdump_options = {
   count: 9999,
   print: 'off',
-}.inject('') { |memo, (flag,val)| memo + "--#{flag} #{val} " }
+}.inject('') { |memo, (flag,val)| memo + "--#{flag} #{val} " } + '/dev/zero'
 
 desc "Run ruby-prof on bin/evdump (9999 events)"
 task "ruby-prof" => "loadavg" do
-  cmd = [
-    'ruby -Ilib',
-    '`which ruby-prof`',
-    rprof_options,
-    'bin/evdump',
-    '--',
-    evdump_options,
-    '/dev/zero',
-    '| tee metrics/ruby-prof',
-  ].join(' ')
-  sh cmd
   puts
+  rprof_sh 'bin/evdump', evdump_options, rprof_options
 end
 
 desc "Run ruby-prof with --exclude-common-cycles"
-task "ruby-prof-exclude" => "loadavg" do
-  cmd = [
-    'ruby -Ilib',
-    '`which ruby-prof`',
-    rprof_options,
-    '--exclude-common-cycles',
-    '--exclude-common-callbacks',
-    'bin/evdump',
-    '--',
-    evdump_options,
-    '/dev/zero',
-    '| tee metrics/ruby-prof-exclude',
-  ].join(' ')
-  sh cmd
+task "ruby-prof-exclude" => "ruby-prof" do
   puts
+  rprof_sh 'bin/evdump', evdump_options,
+           "#{rprof_options} --exclude-common-cycles"
 end
 
-desc "Show current system load"
-task "loadavg" do
-  puts File.read "/proc/loadavg"
+task "no-prof" do
+  lib_sh "bin/evdump #{evdump_options}"
 end
+
+
+#
+# GEM BUILD / PUBLISH
+#
 
 begin
   require 'buildar'
