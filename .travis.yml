@@ -1,12 +1,9 @@
 language: ruby
 rvm:
+  - ruby
+# Problem with rbconfig/sizeof
+#  - jruby
+  - rubinius
   - 2.2
-  - 2.3
-  - 2.4
-  # travis takes much longer to build the execution environment for these
-  # comment out as necessary
-  - ruby-head
-  - jruby-9.1
-  - jruby-head
 install: gem install minitest simplecov
 script: rake test
