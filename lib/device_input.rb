@@ -33,6 +33,9 @@ module DeviceInput
       Data.new(*binstr.unpack(PACK))
     end
 
+    def self.hex(data)
+    end
+
     # return an array of equivalent labels, prettier toward the end
     def self.type_labels(type_val)
       TYPES[type_val] || ["UNK-#{type_val}"]
@@ -80,19 +83,14 @@ module DeviceInput
     end
 
     # display fields in hex
-    def ruby23_hex
-      # :nocov:
-      require 'rbconfig/sizeof'  # new in ruby 2.3
+    def hex
       DEFINITION.inject('') { |memo, (field, type)|
         int = @data.send(field)
-        width = RbConfig::SIZEOF.fetch(type)
+        width = DeviceInput::SIZEOF.fetch(type)
         # memo + ("%#0.#{width * 2}x" % int) + " "
         memo + ("%0.#{width * 2}x" % int) + " "
       }
-      # :nocov:
     end
-
-    alias_method :hex, RUBY23 ? :ruby23_hex : :to_s
   end
 
   def self.read_loop(io)
