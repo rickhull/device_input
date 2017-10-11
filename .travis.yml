@@ -8,5 +8,5 @@ rvm:
   - ruby-head
   - jruby-9.1
   - jruby-head
-install: gem install minitest
+install: gem install minitest simplecov
 script: rake test
