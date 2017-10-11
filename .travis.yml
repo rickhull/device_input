@@ -3,8 +3,7 @@ rvm:
   - ruby
   - ruby-2.2
   - rubinius-3.86
-# Problem with rbconfig/sizeof
-#  - jruby
+  - jruby
 install: gem install minitest simplecov
 script: rake test
 sudo: required # for rubinius-3.86 container update
