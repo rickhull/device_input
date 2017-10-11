@@ -1,11 +1,11 @@
 language: ruby
-bundler_args: --jobs 3 --without tasks
 rvm:
-  - 2.1
   - 2.2
-  - 2.3.3
-  - 2.4.0
+  - 2.3
+  - 2.4
   # travis takes much longer to build the execution environment for these
   # comment out as necessary
-  - 2.0
-  - jruby-9.0.5.0
+  - ruby-head
+  - jruby-9.1
+  - jruby-head
+install: gem install minitest
