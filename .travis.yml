@@ -1,9 +1,9 @@
 language: ruby
 rvm:
   - ruby
+  - ruby-2.2
+  - rubinius-3.86
 # Problem with rbconfig/sizeof
 #  - jruby
-  - rubinius
-  - 2.2
 install: gem install minitest simplecov
 script: rake test
