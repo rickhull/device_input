@@ -33,9 +33,6 @@ module DeviceInput
       Data.new(*binstr.unpack(PACK))
     end
 
-    def self.hex(data)
-    end
-
     # return an array of equivalent labels, prettier toward the end
     def self.type_labels(type_val)
       TYPES[type_val] || ["UNK-#{type_val}"]
