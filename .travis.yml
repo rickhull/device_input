@@ -1,7 +1,10 @@
 language: ruby
 rvm:
+  - 2.2
+  - 2.3
+  - 2.4
+  - ruby-head
   - ruby
-  - ruby-2.2
   - rubinius-3.86
   - jruby
 install: gem install minitest simplecov
