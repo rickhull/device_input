@@ -13,10 +13,8 @@ module DeviceInput
     # ok
   end
 
-  if RbConfig::CONFIG.fetch("MAJOR").to_i < 2
-    raise "unsupported ruby version #{RbConfig::CONFIG['RUBY_VERSION_NAME']}"
-  else
-    class Event
+  class Event
+    unless CODES.respond_to?(:dig)
       def CODES.dig(*args)
         memo = self
         args.each { |a|
