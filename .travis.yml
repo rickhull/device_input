@@ -6,7 +6,7 @@ rvm:
   - ruby-head
   - ruby
   - rubinius-3.86
-  - jruby
+  - jruby-9.1.9
 install: gem install minitest simplecov
 script: rake test
 sudo: required # for rubinius-3.86 container update
