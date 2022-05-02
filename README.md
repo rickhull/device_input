@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rickhull/device_input.svg?branch=master)](https://travis-ci.org/rickhull/device_input)
+[![CI Status](https://github.com/rickhull/device_input/actions/workflows/ci.yaml/badge.svg)](https://github.com/rickhull/device_input/actions/workflows/ci.yaml)
 [![Gem Version](https://badge.fury.io/rb/device_input.svg)](http://badge.fury.io/rb/device_input)
 [![Code Climate](https://codeclimate.com/github/rickhull/device_input/badges/gpa.svg)](https://codeclimate.com/github/rickhull/device_input)
 
