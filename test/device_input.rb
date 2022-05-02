@@ -1,10 +1,5 @@
-require_relative './simplecov.rb'
-SimpleCov.start do
-  add_filter "/compat"
-  self.formatters = [formatter, SimpleCov::Formatter::TextFormatter]
-end
+require_relative 'helper.rb'
 
-require 'minitest/autorun'
 require 'device_input'
 
 describe DeviceInput::Event do

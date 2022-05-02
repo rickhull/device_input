@@ -1,7 +1,5 @@
 [![Build Status](https://travis-ci.org/rickhull/device_input.svg?branch=master)](https://travis-ci.org/rickhull/device_input)
 [![Gem Version](https://badge.fury.io/rb/device_input.svg)](http://badge.fury.io/rb/device_input)
-[![Dependency Status](https://gemnasium.com/rickhull/device_input.svg)](https://gemnasium.com/rickhull/device_input)
-[![Security Status](https://hakiri.io/github/rickhull/device_input/master.svg)](https://hakiri.io/github/rickhull/device_input/master)
 [![Code Climate](https://codeclimate.com/github/rickhull/device_input/badges/gpa.svg)](https://codeclimate.com/github/rickhull/device_input)
 
 # Device Input
@@ -69,7 +67,7 @@ executable code to assist in examining kernel input events.
 
 Install the gem:
 ```shell
-$ gem install device_input # sudo as necessary
+$ gem install device_input
 ```
 
 Or, if using [Bundler](http://bundler.io/), add to your `Gemfile`:
