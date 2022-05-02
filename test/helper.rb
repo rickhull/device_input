@@ -2,6 +2,7 @@ if ENV['CODE_COVERAGE'] and
   !%w[false no].include?(ENV['CODE_COVERAGE'].downcase)
 
   require 'simplecov'
+  require 'simplecov_json_formatter'
 
   class SimpleCov::Formatter::TextFormatter
     FILENAME = 'metrics/coverage'
@@ -32,21 +33,20 @@ if ENV['CODE_COVERAGE'] and
       puts rpt
       if File.writable?(FILENAME)
         File.open(FILENAME, 'w') { |f|
-          f.writqe(rpt + "\n")
+          f.write(rpt + "\n")
         }
         puts "wrote #{FILENAME}"
       end
     end
   end
 
-  SimpleCov.start do
-    add_filter "/compat"
-    self.formatters = [
-      formatter,
-      SimpleCov::Formatter::JSONFormatter,
-      SimpleCov::Formatter::TextFormatter,
-    ]
-  end
+  SimpleCov.formatters = [
+    SimpleCov::Formatter::TextFormatter,
+    SimpleCov::Formatter::JSONFormatter,
+  ]
+  SimpleCov.add_filter "/compat"
+
+  SimpleCov.start
 end
 
 require 'minitest/autorun'
