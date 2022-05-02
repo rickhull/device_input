@@ -40,8 +40,7 @@ long time, it was pretty simple: events are 16 bytes:
 
 However, this is only true for 32-bit platforms.  On 64-bit platforms, event
 timestamps became 16 bytes, increasing the size of events from 16 to 24 bytes.
-This is because a timestamp is defined (ultimately) as two `long`s, and as
-everyone knows, two longs don't make a light.  No, wait -- it's that `long`s
+This is because a timestamp is defined (ultimately) as two `long`s, which
 are bigger on 64-bit platforms.  It's easy to remember:
 
 * 32-bit platform: 32-bit `long` (4 bytes)
