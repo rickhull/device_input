@@ -1,7 +1,7 @@
 Coverage: 100.0%
-Strength: 2.21
+Strength: 2.19
    Lines: 62
  Covered: 62
      N/A: 504
-100% (44/44)	/home/vagrant/git/device_input/lib/device_input.rb
-100% (18/18)	/home/vagrant/git/device_input/lib/device_input/labels.rb
+100% (44/44)	/home/rwh/git/device_input/lib/device_input.rb
+100% (18/18)	/home/rwh/git/device_input/lib/device_input/labels.rb
