@@ -58,7 +58,8 @@ executable code to assist in examining kernel input events.
 
 **REQUIREMENTS**
 
-* Ruby >= 2.0
+* Ruby >= 2.3
+* Earlier rubies are supported on pre-1.0 versions
 
 **DEPENDENCIES**
 
@@ -71,7 +72,7 @@ $ gem install device_input
 
 Or, if using [Bundler](http://bundler.io/), add to your `Gemfile`:
 ```ruby
-gem 'device_input', '~> 0.3'
+gem 'device_input', '~> 1.0'
 ```
 
 # Usage
