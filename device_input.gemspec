@@ -12,15 +12,14 @@ EOF
 README.md
 lib/device_input.rb
 lib/device_input/labels.rb
-lib/device_input/compat.rb
 bin/evdump
 VERSION
 )
   s.executables = ['evdump']
 
-  s.required_ruby_version = "~> 2"
-  s.add_development_dependency "buildar", "~> 2"
-  s.add_development_dependency "slop", "~> 4"
+  s.required_ruby_version = ">= 2.3"
+  s.add_development_dependency "buildar", ">= 2"
+  s.add_development_dependency "slop", ">= 4"
 
   s.version = File.read(File.join(__dir__, 'VERSION')).chomp
 end

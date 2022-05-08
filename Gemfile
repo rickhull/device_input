@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :executable do
-  gem 'slop', '~> 4'
+  gem 'slop', '>= 4'
 end
 
 group :test do
@@ -11,7 +11,7 @@ group :test do
 end
 
 group :tasks do
-  gem 'buildar', '~> 2'
+  gem 'buildar', '>= 2'
   gem 'flog'
   gem 'flay'
   gem 'roodi'

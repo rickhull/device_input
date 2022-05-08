@@ -1,5 +1,5 @@
 require 'device_input/labels'
-require 'device_input/compat'
+require 'rbconfig/sizeof'
 
 module DeviceInput
   class Event
@@ -83,7 +83,7 @@ module DeviceInput
     def hex
       DEFINITION.inject('') { |memo, (field, type)|
         int = @data.send(field)
-        width = DeviceInput::SIZEOF.fetch(type)
+        width = RbConfig::SIZEOF.fetch(type)
         # memo + ("%#0.#{width * 2}x" % int) + " "
         memo + ("%0.#{width * 2}x" % int) + " "
       }

@@ -44,7 +44,6 @@ if ENV['CODE_COVERAGE'] and
     SimpleCov::Formatter::TextFormatter,
     SimpleCov::Formatter::JSONFormatter,
   ]
-  SimpleCov.add_filter "/compat"
 
   SimpleCov.start
 end
