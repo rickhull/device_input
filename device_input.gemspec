@@ -8,18 +8,17 @@ EOF
   s.authors = ["Rick Hull"]
   s.homepage = 'https://github.com/rickhull/device_input'
   s.license = 'GPL-3.0'
-  s.files = %w(
-README.md
-lib/device_input.rb
-lib/device_input/labels.rb
-bin/evdump
-VERSION
-)
-  s.executables = ['evdump']
 
   s.required_ruby_version = ">= 2.3"
-  s.add_development_dependency "buildar", ">= 2"
-  s.add_development_dependency "slop", ">= 4"
 
   s.version = File.read(File.join(__dir__, 'VERSION')).chomp
+
+  s.files  = %w[device_input.gemspec VERSION README.md Rakefile]
+  s.files += Dir['lib/**/*.rb']
+  s.files += Dir['test/**/*.rb']
+  s.files += Dir['bin/**/*.rb']
+
+  s.executables = ['evdump']
+
+  s.add_runtime_dependency 'slop', '~> 4.0'
 end

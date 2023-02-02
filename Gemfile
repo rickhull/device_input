@@ -1,19 +1,13 @@
 source 'https://rubygems.org'
 
-group :executable do
-  gem 'slop', '>= 4'
-end
+gemspec
 
-group :test do
+group :development, optional: true do
   gem 'minitest'
   gem 'rake'
-  gem 'simplecov'
-end
-
-group :tasks do
-  gem 'buildar', '>= 2'
+  gem 'buildar'
   gem 'flog'
   gem 'flay'
   gem 'roodi'
-  gem 'ruby-prof', platforms: [:mri]
+  gem 'ruby-prof', platforms: :mri
 end
