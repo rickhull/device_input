@@ -47,5 +47,3 @@ if ENV['CODE_COVERAGE'] and
 
   SimpleCov.start
 end
-
-require 'minitest/autorun'

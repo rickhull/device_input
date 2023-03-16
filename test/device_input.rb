@@ -1,19 +1,18 @@
-require_relative 'helper.rb'
-
+require 'minitest/autorun'
 require 'device_input'
 
-describe DeviceInput::Event do
-  E = DeviceInput::Event
+include DeviceInput
 
+describe Event do
   describe "type_labels" do
     it "must return an array of strings" do
-      dne = E.type_labels(:does_not_exist)
+      dne = Event.type_labels(:does_not_exist)
       expect(dne).must_be_instance_of(Array)
       expect(dne.first).must_be_instance_of(String)
       expect(dne.last).must_be_instance_of(String)
 
       # 0 is EV_SYN
-      de = E.type_labels(0)
+      de = Event.type_labels(0)
       expect(de).must_be_instance_of(Array)
       expect(de.first).must_be_instance_of(String)
       expect(de.last).must_be_instance_of(String)
@@ -22,13 +21,13 @@ describe DeviceInput::Event do
 
   describe "code_labels" do
     it "must return an array of strings" do
-      dne = E.code_labels(:does_not_exist, nil)
+      dne = Event.code_labels(:does_not_exist, nil)
       expect(dne).must_be_instance_of(Array)
       expect(dne.first).must_be_instance_of(String)
       expect(dne.last).must_be_instance_of(String)
 
       # 0,0 = EV_SYN,SYN_REPORT
-      de = E.code_labels(0, 0)
+      de = Event.code_labels(0, 0)
       expect(de).must_be_instance_of(Array)
       expect(de.first).must_be_instance_of(String)
       expect(de.last).must_be_instance_of(String)
@@ -37,23 +36,23 @@ describe DeviceInput::Event do
 
   describe "encode" do
     it "must return a string" do
-      expect(E.encode(E::NULL_DATA)).must_be_instance_of(String)
+      expect(Event.encode(Event::NULL_DATA)).must_be_instance_of(String)
     end
   end
 
   describe "decode" do
     it "must return a Data (struct)" do
-      expect(E.decode(E::NULL_MSG)).must_be_instance_of(E::Data)
+      expect(Event.decode(Event::NULL_MSG)).must_be_instance_of(Event::Data)
     end
   end
 
   describe "new instance" do
     before do
-      @event = E.new(E::NULL_DATA)
+      @event = Event.new(Event::NULL_DATA)
     end
 
     it "must have data" do
-      expect(@event.data).must_be_instance_of(E::Data)
+      expect(@event.data).must_be_instance_of(Event::Data)
     end
 
     it "must have a timestamp" do
@@ -92,7 +91,7 @@ describe DeviceInput do
         events << event
       }
       expect(events).wont_be_empty
-      expect(events.first).must_be_instance_of(E)
+      expect(events.first).must_be_instance_of(Event)
     end
   end
 end
