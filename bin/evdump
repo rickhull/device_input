@@ -16,7 +16,7 @@ end
 
 def opts.error(msg = nil)
   puts self
-  puts "ERROR: #{msg}" if msg
+  puts "\nERROR: #{msg}" if msg
   exit 1
 end
 
