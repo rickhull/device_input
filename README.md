@@ -17,18 +17,18 @@ Once you've given up the privilege to read `/dev/input` it's *game over* anyway.
 
 ## Rationale
 
-`/dev/input/eventX` is just a character device.  Can't we read it with simple
-Unix tooling?  Yes and no.  First of all, a character device just means that
-it passes bytes (not necessarily characters or strings) from userspace into
-the kernel.  Secondarily, the messages (defined as C structs) are in fact
-binary and not strings or conventional characters.
+`/dev/input/eventX` is a *character special* file, which represents a
+*character device*, like a keyboard, as opposed to a *block device* like
+a hard drive.  Character special files are used to pass information from
+the character device into the Linux kernel.  Can we read a character special
+file with text-oriented Unix tooling? No.
 
-Since these are C structs (analagous to a binary message), we need to be able
-to delimit individual messages and decode them.  We can't simply read a byte
-at a time and try to make sense of it.  In fact, on my system,
-`/dev/input/event0` refuses any read that is not a multiple of the struct /
-message size, so we need to know the message size before even attempting a
-`read()`, let alone a `decode()`.
+The messages in the character special file are binary messages, represented and
+defined by C structs. Thus, we require the ability to delimit individual
+messages and decode them.  We can't simply read a byte at a time and try to
+make sense of it.  In fact, on my system, `/dev/input/event0` refuses any
+read that is not a multiple of the struct / message size, so we need to know
+the message size before even attempting a `read()`, let alone a `decode()`.
 
 To determine the message size, we need to know the data structure.  For a
 long time, it was pretty simple: events are 16 bytes:
